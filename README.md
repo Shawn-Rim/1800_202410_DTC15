@@ -8,7 +8,7 @@ This browser based web application to ...
 List team members and/or short bio's here... 
 * Shawn Rim - I am excited to work on a project with my team members.
 * Jordan Nykoluk - I don't know much about coding
-* Alex Krantz
+* Alex Krantz - I am looking forward to working on this project
 	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.

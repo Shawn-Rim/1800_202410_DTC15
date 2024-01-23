@@ -7,7 +7,7 @@ This browser based web application to ...
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
 * Shawn Rim - I am excited to work on a project with my team members.
-* Jordan Nykoluk
+* Jordan Nykoluk - I don't know much about coding
 * Alex Krantz
 	
 ## 3. Technologies and Resources Used

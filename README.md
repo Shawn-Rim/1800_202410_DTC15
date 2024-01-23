@@ -6,7 +6,7 @@ This browser based web application to ...
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
-* Shawn Rim
+* Shawn Rim - I am excited to work on a project with my team members.
 * Jordan Nykoluk
 * Alex Krantz
 	

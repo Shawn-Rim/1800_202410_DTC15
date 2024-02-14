@@ -46,17 +46,28 @@
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="#"><b>WasteNot</b></a>
-                <button class="btn" type="button">
-                    <span class="material-symbols-outlined md-48">
-                        settings
-                    </span>
-                </button>
                 <div
-                    class="collapse navbar-collapse"
+                    class="collapse navbar-collapse d-none d-lg-block"
                     id="navbarNavAltMarkup"
                     style="width: 300px">
                     <div class="navbar-nav gap-2">
+                        <a class="nav-link active" aria-current="page" href="#"
+                            >Home</a
+                        >
+                        <a class="nav-link active" href="#">Profile</a>
+                        <a class="nav-link active" href="#">Log In</a>
+                    </div>
+                </div>
+                <a class="navbar-brand" href="#"><b>WasteNot</b></a>
+                <a href="#" class="link-dark text-center"
+                    ><span class="material-symbols-outlined md-36">
+                        settings
+                    </span></a
+                >
+                <div
+                    class="collapse navbar-collapse"
+                    id="navbarNavAltMarkup display-none-on-large-screen">
+                    <div class="navbar-nav gap-2 d-lg-none">
                         <a class="nav-link active" aria-current="page" href="#"
                             >Home</a
                         >

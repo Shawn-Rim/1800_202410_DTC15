@@ -1,5 +1,5 @@
 
-#navbarNavAltMarkup a:hover {
+a:hover.navbarLink {
     background-color: lightgray !important;
 }
 

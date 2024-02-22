@@ -2,3 +2,4 @@
 *.logs
 node_modules/
 .vscode/
+FirebaseAPI_DTC15.js

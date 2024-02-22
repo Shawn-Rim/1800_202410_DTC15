@@ -19,26 +19,26 @@
     font-size: 48px;
 }
 
-li {
+#indexFooter li {
     list-style-type: none;
     text-decoration: none;
     color: lightgrey; 
     text-align:center;
 }
 
-a {
+#indexFooter a {
     text-decoration: none;
     color: lightgrey;
     display: inline-block; 
     text-align: center;
 }
 
-a:hover {
+#indexFooter a:hover {
     text-decoration: none;
     color: grey;
 }
 
-h3 {
+#indexFooter h3 {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 10px;

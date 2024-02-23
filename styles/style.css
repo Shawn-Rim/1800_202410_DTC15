@@ -1,5 +1,5 @@
 
-a:hover.navbarLink {
+.navbarLink:hover {
     background-color: lightgray !important;
 }
 

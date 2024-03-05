@@ -44,6 +44,15 @@
     margin-bottom: 10px;
 }
 
+footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    position:static;
+}
+
 @media (max-width: 768px) {
     #footer {
         display: flex;

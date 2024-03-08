@@ -19,38 +19,32 @@
     font-size: 48px;
 }
 
-#indexFooter li {
+/* #indexFooter li {
     list-style-type: none;
     text-decoration: none;
     color: lightgrey; 
     text-align:center;
-}
+} */
 
 #indexFooter a {
-    text-decoration: none;
-    color: lightgrey;
-    display: inline-block; 
-    text-align: center;
+    text-decoration: underline;
+    color: white;
 }
 
 #indexFooter a:hover {
-    text-decoration: none;
     color: grey;
 }
 
-#indexFooter h3 {
+/* #indexFooter h3 {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 10px;
-}
+} */
 
 footer {
     background-color: #1a1a1a;
     color: white;
     padding: 20px;
-    text-align: center;
-    font-size: 14px;
-    position:static;
 }
 
 @media (max-width: 768px) {

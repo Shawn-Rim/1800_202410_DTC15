@@ -41,15 +41,38 @@
     margin-bottom: 10px;
 } */
 
-footer {
+footer#footer {
     background-color: #1a1a1a;
     color: white;
     padding: 20px;
 }
 
+
+.header-link {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+}
+
+.header-link:hover {
+    background-color: lightgray;
+}
+
+.icon {
+    text-decoration: none;
+    color: black;
+    border-radius: 25px;
+    width: 48px;
+    height: 48px;
+}
+
+.icon:hover {
+    background-color: lightgray;
+}
+
 @media (max-width: 768px) {
-    #footer {
+    /* #footer {
         display: flex;
         flex-direction: column;
-    }
+    } */
 }

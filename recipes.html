@@ -51,20 +51,32 @@
 
     <!-- Page content -->
     <main>
-      <div class="d-flex flex-wrap justify-content-center align-items-center gap-4 m-4" id="recipe-list"></div>
-    <main>
+      <div class="d-flex justify-content-center mt-4" id="loading">
+        <div class="spinner-border text-secondary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <div class="d-flex flex-column justify-content-center align-items-center gap-4 m-4" id="recipe-list"></div>
+    </main>
 
     <template id="recipe-card-template">
-      <div class="card">
+      <div class="card w-100">
         <div class="row g-0">
-          <div class="col-md-4">
-            <img id="image" class="img-fluid rounded-start">
+          <div class="col-md-auto">
+            <img id="image" class="centered-image rounded-start" height="200" width="200">
           </div>
-          <div class="col-md-8">
+          <div class="col-md">
             <div class="card-body">
-              <h5 id="title" class="card-title">Card title</h5>
-              <p id="description" class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 id="name" class="card-title"></h5>
+              <p id="description" class="card-text"></p>
               <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="col-md-auto">
+            <div class="d-flex w-100 h-100 align-items-center">
+              <a href="#" class="mx-2 mx-md-3 mb-3 mb-md-0 btn btn-sm btn-link" id="link">
+                See more
+              </a>
             </div>
           </div>
         </div>
@@ -82,5 +94,6 @@
     ></script>
 
     <!-- Page scripts -->
+    <script src="./scripts/recipes.js"></script>
   </body>
 </html>

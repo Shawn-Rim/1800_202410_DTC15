@@ -86,3 +86,12 @@ footer#footer {
         flex-direction: column;
     } */
 }
+
+.hidden {
+    display: none !important;
+}
+
+.centered-image {
+    object-fit: cover;
+    object-position: center;
+}

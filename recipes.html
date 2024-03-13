@@ -52,11 +52,28 @@
 
     <!-- Page content -->
     <main class="container mx-auto">
-      <div class="input-group my-3">
-        <span class="input-group-text material-symbols-outlined" id="search-icon">
-          search
-        </span>
-        <input id="search" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
+      <div class="mt-4 row gy-0 gx-2">
+        <div class="col-md">
+          <div class="input-group">
+            <span class="input-group-text material-symbols-outlined" id="search-icon">
+              search
+            </span>
+            <input id="search" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
+          </div>
+        </div>
+        <div class="col-md-auto">
+          <div class="input-group">
+            <select id="sort-by" class="form-select" aria-label="Sort by">
+              <option disabled value="best-match">Best Match</option>
+              <option selected value="name">Name</option>
+              <option value="dificulty">Dificulty</option>
+              <option value="time">Created At</option>
+            </select>
+            <button class="btn btn-outline-secondary" type="button" id="sort-direction" title="Ascending" data-direction="asc">
+              &uarr;
+            </button>
+          </div>
+        </div>
       </div>
 
       <div class="d-flex justify-content-center mt-4" id="loading">

@@ -70,11 +70,15 @@
                         <div>Expiring in <span id="expiryDate"></span></div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-light text-center">
+                <button
+                    type="button"
+                    class="btn btn-light text-center"
+                    onclick="deleteItem(this)">
                     <span class="material-symbols-outlined lg-24">
                         delete
                     </span>
                 </button>
+                <span id="documentID" class="d-none"></span>
             </div>
         </template>
 

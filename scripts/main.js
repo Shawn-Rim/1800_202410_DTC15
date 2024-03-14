@@ -10,8 +10,31 @@ function sortArray(arr) {
     }
 }
 
+function deleteItem(element) {
+    firebase.auth().onAuthStateChanged(async (user) => {
+        if (user) {
+            docID = element.parentNode.querySelector("#documentID").innerText;
+
+            await db
+                .collection("users")
+                .doc(user.uid)
+                .collection("groceries")
+                .doc(docID)
+                .delete();
+
+            console.log("Item deleted");
+            displayList();
+        } else {
+            console.log("No user logged in.");
+        }
+    });
+}
+
 function displayList() {
-    itemTemplate = document.querySelector("#groceryListItemTemplate");
+    let itemTemplate = document.querySelector("#groceryListItemTemplate");
+    let listPlaceholder = document.getElementById("groceryListPlaceholder");
+
+    listPlaceholder.innerHTML = "";
 
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
@@ -25,6 +48,7 @@ function displayList() {
 
             groceries.forEach((doc) => {
                 let itemDict = {
+                    id: doc.id,
                     name: doc.data().name,
                     quantity: doc.data().quantity,
                     unit: doc.data().unit,
@@ -38,11 +62,9 @@ function displayList() {
             console.log(items);
 
             items.forEach((item) => {
-                let listPlaceholder = document.getElementById(
-                    "groceryListPlaceholder"
-                );
                 let newTemplate = itemTemplate.content.cloneNode(true);
 
+                newTemplate.getElementById("documentID").innerText = item.id;
                 newTemplate.getElementById("itemName").innerText = item.name;
                 newTemplate.getElementById("quantity").innerText =
                     item.quantity;

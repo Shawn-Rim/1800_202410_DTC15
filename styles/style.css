@@ -30,6 +30,23 @@
     width: 40% !important;
 }
 
+span.pointer {
+    cursor: pointer !important;
+}
+
+#saveBtn {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
+@media (max-width: 992px) {
+    #saveBtn {
+        position: absolute;
+        bottom: 80px;
+    }
+}
+
 /* #indexFooter li {
     list-style-type: none;
     text-decoration: none;

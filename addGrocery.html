@@ -55,7 +55,7 @@
                 id="formPlaceholder"
                 class="container mx-auto d-flex flex-column justify-content-center align-items-center gap-2"></div>
             <button
-                class="btn btn-light px-4 py-2 text-center d-flex justify-content-center align-items-center w-50 gap-2"
+                class="btn btn-light px-4 py-2 text-center d-flex justify-content-center align-items-end w-50 gap-2"
                 id="addbtn"
                 onclick="addGroceryItemForm()">
                 <span class="material-symbols-outlined"> add_box </span>
@@ -63,8 +63,11 @@
             </button>
         </main>
         <div
-            class="w-100 d-flex flex-row justify-content-end align-items-center p-4">
-            <a class="btn btn-light px-2" onclick="saveGroceryItems()">
+            class="d-flex flex-row justify-content-end align-items-end fixed-bottom">
+            <a
+                class="btn btn-light px-2"
+                id="saveBtn"
+                onclick="saveGroceryItems()">
                 <span class="material-symbols-outlined md-48"> save </span>
             </a>
         </div>
@@ -80,7 +83,7 @@
                         class="px-2 w-75"
                         id="itemName" />
                     <span
-                        class="material-symbols-outlined md-24"
+                        class="material-symbols-outlined md-24 pointer"
                         onclick="removeForm(this)">
                         close
                     </span>

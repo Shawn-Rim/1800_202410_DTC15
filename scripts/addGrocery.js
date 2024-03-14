@@ -39,6 +39,9 @@ function saveGroceryItems() {
 
                 console.log("Grocery item added successfully");
             });
+
+            await groceries.get();
+            window.location.href = "/main.html";
         } else {
             console.log("No user logged in.");
         }

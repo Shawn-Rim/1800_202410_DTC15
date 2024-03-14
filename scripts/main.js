@@ -69,8 +69,37 @@ function displayList() {
                 newTemplate.getElementById("quantity").innerText =
                     item.quantity;
                 newTemplate.getElementById("unit").innerText = item.unit;
-                newTemplate.getElementById("expiryDate").innerText =
-                    item.remainingTime;
+                let itemContainer = newTemplate.getElementById("itemContainer");
+
+                remainingTimeInDays = Math.floor(
+                    item.remainingTime / 1000 / 60 / 60 / 24
+                );
+
+                if (remainingTimeInDays < 0) {
+                    itemContainer.classList.add(
+                        "bg-danger-subtle",
+                        "border-danger"
+                    );
+                }
+
+                remainingTime = Math.abs(remainingTimeInDays);
+                timeString = "";
+                if (remainingTime >= 30) {
+                    itemContainer.classList.add("border-success-subtle");
+                    timeString =
+                        Math.floor(remainingTimeInDays / 30) + " Months";
+                } else if (remainingTime >= 7) {
+                    itemContainer.classList.add("border-success-subtle");
+                    timeString = Math.floor(remainingTimeInDays / 7) + " Weeks";
+                } else {
+                    itemContainer.classList.add(
+                        "bg-warning-subtle",
+                        "border-warning"
+                    );
+                    timeString = remainingTimeInDays + " Days";
+                }
+
+                newTemplate.getElementById("expiryDate").innerText = timeString;
 
                 listPlaceholder.appendChild(newTemplate);
             });

@@ -25,7 +25,9 @@ function saveGroceryItems() {
                 let expirationDate =
                     expirationString === ""
                         ? new Date()
-                        : new Date(expirationString);
+                        : new Date(
+                              new Date(expirationString).getTime() + 86400000
+                          );
                 let cost = form.querySelector("#cost").value;
 
                 groceries.add({

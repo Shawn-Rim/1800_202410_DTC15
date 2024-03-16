@@ -75,27 +75,42 @@ function displayList() {
                     item.remainingTime / 1000 / 60 / 60 / 24
                 );
 
-                if (remainingTimeInDays < 0) {
-                    itemContainer.classList.add(
-                        "bg-danger-subtle",
-                        "border-danger"
-                    );
-                }
-
                 remainingTime = Math.abs(remainingTimeInDays);
                 timeString = "";
                 if (remainingTime >= 30) {
-                    itemContainer.classList.add("border-success-subtle");
+                    if (remainingTimeInDays < 0) {
+                        itemContainer.classList.add(
+                            "bg-danger-subtle",
+                            "border-danger"
+                        );
+                    } else {
+                        itemContainer.classList.add("border-success-subtle");
+                    }
                     timeString =
                         Math.floor(remainingTimeInDays / 30) + " Months";
                 } else if (remainingTime >= 7) {
-                    itemContainer.classList.add("border-success-subtle");
+                    if (remainingTimeInDays < 0) {
+                        itemContainer.classList.add(
+                            "bg-danger-subtle",
+                            "border-danger"
+                        );
+                    } else {
+                        itemContainer.classList.add("border-success-subtle");
+                    }
                     timeString = Math.floor(remainingTimeInDays / 7) + " Weeks";
                 } else {
-                    itemContainer.classList.add(
-                        "bg-warning-subtle",
-                        "border-warning"
-                    );
+                    if (remainingTimeInDays < 0) {
+                        itemContainer.classList.add(
+                            "bg-danger-subtle",
+                            "border-danger"
+                        );
+                    } else {
+                        itemContainer.classList.add(
+                            "bg-warning-subtle",
+                            "border-warning"
+                        );
+                    }
+
                     timeString = remainingTimeInDays + " Days";
                 }
 

@@ -7,7 +7,17 @@ const sortDirection = $("#sort-direction");
 const filterDifficulty = document.getElementById("filter-difficulty");
 const filterDifficultyStart = $("#filter-difficulty-start");
 const filterDifficultyEnd = $("#filter-difficulty-end");
+const filterCost = document.getElementById("filter-cost");
+const filterCostStart = $("#filter-cost-start");
+const filterCostEnd = $("#filter-cost-end");
 
+const moneyFormat = wNumb({ 
+  decimals: 2, 
+  thousand: ",", 
+  prefix: "$", 
+  encoder: value => value / 100, 
+  decoder: value => value * 100,
+});
 const recipeIndex = new Fuse([], {
   includeScore: true,
   minMatchCharLength: 2,
@@ -16,19 +26,6 @@ const recipeIndex = new Fuse([], {
     { name: 'name', weight: 2 },
     { name: 'description', weight: 1 },
   ],
-});
-
-firebase.auth().onAuthStateChanged(async (user) => {
-  if (!user) return;
-
-  loading.removeClass("hidden");
-  const recipesRef = await db.collection('recipes').get();
-  loading.addClass("hidden");
-
-  const recipes = recipesRef.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-  recipeIndex.setCollection(recipes);
-  displayRecipes();
 });
 
 search.on("input", debounce(500, () => {
@@ -69,11 +66,49 @@ filterDifficulty.noUiSlider.on('update', function() {
   displayRecipes();
 });
 
+noUiSlider.create(filterCost, {
+  connect: true,
+  start: [0, 10000],
+  range: {
+    'min': 0,
+    'max': 10000
+  }
+});
+filterCost.noUiSlider.on('update', function() {
+  const [start, end] = this.get(true);
+  filterCostStart.text(moneyFormat.to(start));
+  filterCostEnd.text(moneyFormat.to(end));
+
+  displayRecipes();
+});
+
+firebase.auth().onAuthStateChanged(async (user) => {
+  if (!user) return;
+
+  loading.removeClass("hidden");
+  const recipesRef = await db.collection('recipes').get();
+  loading.addClass("hidden");
+
+  const recipes = recipesRef.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+  const mostExpensive = recipes.reduce((max, recipe) => Math.max(max, recipe.estimatedCost), 0);
+  filterCostEnd.text(moneyFormat.to(mostExpensive));
+  filterCost.noUiSlider.updateOptions({ 
+    start: [0, mostExpensive], 
+    range: { min: 0, max: mostExpensive },
+  });
+
+  recipeIndex.setCollection(recipes);
+  displayRecipes();
+});
+
 /**
  * Display the recipes, taking into account filters and sorting
  */
 function displayRecipes() {
   const recipes = searchRecipes(search.val());
+  if (recipes.length === 0) return;
+
   sortRecipes(recipes);
 
   const filtered = applyFilters(recipes);
@@ -105,14 +140,17 @@ function sortRecipes(recipes) {
 }
 
 /**
- * Apply the difficulty filter to the recipes
+ * Apply the cost and difficulty filters to the recipes
  * 
  * @param {Array} recipes the recipes to filter
  * @returns the filtered recipes
  */
 function applyFilters(recipes) {
-  const [start, end] = filterDifficulty.noUiSlider.get(true);
-  return recipes.filter(recipe => recipe.difficulty >= start && recipe.difficulty <= end);
+  const [difficultyStart, difficultyEnd] = filterDifficulty.noUiSlider.get(true);
+  const [costStart, costEnd] = filterCost.noUiSlider.get(true);
+  return recipes
+    .filter(recipe => recipe.difficulty >= difficultyStart && recipe.difficulty <= difficultyEnd)
+    .filter(recipe => recipe.estimatedCost >= costStart && recipe.estimatedCost <= costEnd);
 }
 
 /**

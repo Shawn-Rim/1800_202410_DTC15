@@ -4,6 +4,9 @@ const template = document.getElementById("recipe-card-template");
 const search = $("#search");
 const sortBy = $("#sort-by");
 const sortDirection = $("#sort-direction");
+const filterDifficulty = document.getElementById("filter-difficulty");
+const filterDifficultyStart = $("#filter-difficulty-start");
+const filterDifficultyEnd = $("#filter-difficulty-end");
 
 const recipeIndex = new Fuse([], {
   includeScore: true,
@@ -49,15 +52,34 @@ sortDirection.on("click", () => {
   displayRecipes();
 })
 
+noUiSlider.create(filterDifficulty, {
+  connect: true,
+  start: [1, 5],
+  step: 1,
+  range: {
+    'min': 1,
+    'max': 5
+  }
+});
+filterDifficulty.noUiSlider.on('update', function() {
+  const [start, end] = this.get(true);
+  filterDifficultyStart.text(start);
+  filterDifficultyEnd.text(end);
+
+  displayRecipes();
+});
+
 /**
  * Display the recipes, taking into account filters and sorting
  */
 function displayRecipes() {
   const recipes = searchRecipes(search.val());
   sortRecipes(recipes);
+
+  const filtered = applyFilters(recipes);
   
   list.empty();
-  for (const recipe of recipes) {
+  for (const recipe of filtered) {
     const instantiation = template.content.cloneNode(true);
 
     instantiation.getElementById("name").innerText = recipe.name;
@@ -80,6 +102,17 @@ function sortRecipes(recipes) {
 
   recipes.sort(compareFnFor(by));
   if (descending) recipes.reverse();
+}
+
+/**
+ * Apply the difficulty filter to the recipes
+ * 
+ * @param {Array} recipes the recipes to filter
+ * @returns the filtered recipes
+ */
+function applyFilters(recipes) {
+  const [start, end] = filterDifficulty.noUiSlider.get(true);
+  return recipes.filter(recipe => recipe.difficulty >= start && recipe.difficulty <= end);
 }
 
 /**

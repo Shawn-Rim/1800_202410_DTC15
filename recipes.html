@@ -43,7 +43,10 @@
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/wnumb@1.2.0/wNumb.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css"
+    />
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="styles/style.css" />
@@ -51,17 +54,27 @@
 
   <body>
     <!-- Page layout -->
-    <nav id="navbar"></nav>
+    <nav id="navbar" src="components/navbar/authenticated.html"></nav>
 
     <!-- Page content -->
     <main class="container mx-auto">
       <div class="mt-4 row g-2">
         <div class="col-md">
           <div class="input-group">
-            <span class="input-group-text material-symbols-outlined" id="search-icon">
+            <span
+              class="input-group-text material-symbols-outlined"
+              id="search-icon"
+            >
               search
             </span>
-            <input id="search" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
+            <input
+              id="search"
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              aria-label="Search"
+              aria-describedby="search-icon"
+            />
           </div>
         </div>
         <div class="col-auto">
@@ -72,22 +85,33 @@
               <option value="dificulty">Dificulty</option>
               <option value="time">Created At</option>
             </select>
-            <button class="btn btn-outline-secondary" type="button" id="sort-direction" title="Ascending" data-direction="asc">
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              id="sort-direction"
+              title="Ascending"
+              data-direction="asc"
+            >
               &uarr;
             </button>
           </div>
         </div>
         <div class="col-auto">
-          <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#filters" aria-expanded="false" aria-controls="filters">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#filters"
+            aria-expanded="false"
+            aria-controls="filters"
+          >
             Filters
           </button>
         </div>
       </div>
 
       <div class="collapse card mt-2" id="filters">
-        <div class="card-header">
-          Filters
-        </div>
+        <div class="card-header">Filters</div>
         <div class="card-body px-4">
           <div class="row gy-2 gx-4">
             <div class="col-md">
@@ -117,25 +141,41 @@
           <span class="visually-hidden">Loading...</span>
         </div>
       </div>
-      <div class="d-flex flex-column justify-content-center align-items-center gap-4 m-4" id="recipe-list"></div>
+      <div
+        class="d-flex flex-column justify-content-center align-items-center gap-4 m-4"
+        id="recipe-list"
+      ></div>
     </main>
 
     <template id="recipe-card-template">
       <div class="card w-100">
         <div class="row g-0">
           <div class="col-md-auto">
-            <img id="image" class="centered-image rounded-start" height="200" width="200">
+            <img
+              id="image"
+              class="centered-image rounded-start"
+              height="200"
+              width="200"
+            />
           </div>
           <div class="col-md">
             <div class="card-body">
               <h5 id="name" class="card-title"></h5>
               <p id="description" class="card-text"></p>
-              <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+              <p class="card-text">
+                <small class="text-body-secondary"
+                  >Last updated 3 mins ago</small
+                >
+              </p>
             </div>
           </div>
           <div class="col-md-auto">
             <div class="d-flex w-100 h-100 align-items-center">
-              <a href="#" class="mx-2 mx-md-3 mb-3 mb-md-0 btn btn-sm btn-link" id="link">
+              <a
+                href="#"
+                class="mx-2 mx-md-3 mb-3 mb-md-0 btn btn-sm btn-link"
+                id="link"
+              >
                 See more
               </a>
             </div>
@@ -144,7 +184,10 @@
       </div>
     </template>
 
-    <footer class="component fixed-bottom sticky-lg-top bg-secondary-subtle" id="stickyFooter"></footer>
+    <footer
+      class="component fixed-bottom sticky-lg-top bg-secondary-subtle"
+      id="stickyFooter"
+    ></footer>
 
     <!-- Template scripts -->
     <script src="scripts/FirebaseAPI_DTC15.js"></script>

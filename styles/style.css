@@ -1,5 +1,25 @@
 .navbarLink:hover {
-    background-color: lightgray !important;
+    background-color: gray !important;
+    border-radius: 10px;
+    color: white;
+}
+
+.navbar {
+    font-family: "Arial", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbarLink {
+    text-decoration: none;
+    color: grey;
+    margin-right: 10px;
 }
 
 .material-symbols-outlined.md-18 {

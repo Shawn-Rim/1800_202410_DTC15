@@ -173,3 +173,8 @@ footer#footer {
         max-width: 75%;
     }
 }
+
+#about {
+    padding: 20px;
+    margin: 20px;
+}

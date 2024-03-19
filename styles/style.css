@@ -1,4 +1,3 @@
-
 .navbarLink:hover {
     background-color: lightgray !important;
 }
@@ -27,43 +26,130 @@
     transition: 0.3s;
 }
 
-#indexFooter li {
+#itemInformation #itemName {
+    width: 45% !important;
+}
+
+#itemInformation #information {
+    width: 55% !important;
+}
+
+#itemInformation #information #quantityDiv {
+    width: 40% !important;
+}
+
+span.pointer {
+    cursor: pointer !important;
+}
+
+#saveBtn {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
+@media (max-width: 992px) {
+    #saveBtn {
+        position: absolute;
+        bottom: 80px;
+    }
+}
+
+/* #indexFooter li {
     list-style-type: none;
     text-decoration: none;
     color: lightgrey; 
     text-align:center;
-}
+} */
 
 #indexFooter a {
-    text-decoration: none;
-    color: lightgrey;
-    display: inline-block; 
-    text-align: center;
+    text-decoration: underline;
+    color: white;
 }
 
 #indexFooter a:hover {
-    text-decoration: none;
     color: grey;
 }
 
-#indexFooter h3 {
+/* #indexFooter h3 {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 10px;
-}
+} */
 
-footer {
+footer#footer {
     background-color: #1a1a1a;
     color: white;
     padding: 20px;
-    text-align: center;
-    font-size: 14px;
-    position:static;
+}
+
+.header-link {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+}
+
+.header-link:hover {
+    background-color: lightgray;
+}
+
+.icon {
+    text-decoration: none;
+    color: black;
+    border-radius: 25px;
+    width: 48px;
+    height: 48px;
+}
+
+.icon:hover {
+    background-color: lightgray;
 }
 
 @media (max-width: 768px) {
-    #footer {
+    /* #footer {
         display: flex;
         flex-direction: column;
+    } */
+}
+
+.hidden {
+    display: none !important;
+}
+
+.centered-image {
+    object-fit: cover;
+    object-position: center;
+}
+
+.slider {
+    margin-top: 0.5rem;
+    padding: 0 0.5rem;
+    height: 10px;
+}
+
+.slider .noUi-handle::before,
+.slider .noUi-handle::after {
+    display: none;
+}
+
+.slider .noUi-handle {
+    height: 18px;
+    width: 18px;
+    top: -5px;
+    right: -9px;
+    border-radius: 9px;
+}
+
+.slider .noUi-handle-lower {
+    right: 0;
+}
+
+.slider .noUi-handle-upper {
+    right: -18px;
+}
+
+@media (min-width: 992px) {
+    .slider {
+        max-width: 75%;
     }
 }

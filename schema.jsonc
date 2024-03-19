@@ -61,6 +61,11 @@
                   "type": "string",
                   "description": "When the item expires",
                   "format": "date"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "description": "When the grocery was added",
+                  "format": "date-time"
                 }
               }
             }
@@ -131,6 +136,11 @@
               "description": "A reference to a user document",
               "format": "/users/<id>"
             }
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When the recipe was created",
+            "format": "date-time"
           },
 
           // The ingredients sub-collection (/recipes/<recipe-id>/ingredients/<ingredient-id>)

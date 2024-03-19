@@ -10,24 +10,18 @@ function addGroceryItemForm() {
 function saveGroceryItems() {
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
-            let groceries = db
-                .collection("users")
-                .doc(user.uid)
-                .collection("groceries");
+            let groceries = db.collection("users").doc(user.uid).collection("groceries");
             let inputs = document.querySelectorAll(".formInput");
 
             inputs.forEach((form) => {
                 let name = form.querySelector("#itemName").value;
                 let quantity = form.querySelector("#quantity").value;
                 let unit = form.querySelector("#unit").value;
-                let expirationString =
-                    form.querySelector("#expirationDate").value;
+                let expirationString = form.querySelector("#expirationDate").value;
                 let expirationDate =
                     expirationString === ""
                         ? new Date()
-                        : new Date(
-                              new Date(expirationString).getTime() + 86400000
-                          );
+                        : new Date(new Date(expirationString).getTime() + 86400000);
                 let cost = form.querySelector("#cost").value;
 
                 groceries.add({

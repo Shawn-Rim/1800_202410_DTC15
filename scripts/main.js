@@ -15,12 +15,7 @@ function deleteItem(element) {
         if (user) {
             docID = element.parentNode.querySelector("#documentID").innerText;
 
-            await db
-                .collection("users")
-                .doc(user.uid)
-                .collection("groceries")
-                .doc(docID)
-                .delete();
+            await db.collection("users").doc(user.uid).collection("groceries").doc(docID).delete();
 
             console.log("Item deleted");
             displayList();
@@ -38,11 +33,7 @@ function displayList() {
 
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
-            groceries = await db
-                .collection("users")
-                .doc(user.uid)
-                .collection("groceries")
-                .get();
+            groceries = await db.collection("users").doc(user.uid).collection("groceries").get();
 
             items = Array();
 
@@ -66,49 +57,33 @@ function displayList() {
 
                 newTemplate.getElementById("documentID").innerText = item.id;
                 newTemplate.getElementById("itemName").innerText = item.name;
-                newTemplate.getElementById("quantity").innerText =
-                    item.quantity;
+                newTemplate.getElementById("quantity").innerText = item.quantity;
                 newTemplate.getElementById("unit").innerText = item.unit;
                 let itemContainer = newTemplate.getElementById("itemContainer");
 
-                remainingTimeInDays = Math.floor(
-                    item.remainingTime / 1000 / 60 / 60 / 24
-                );
+                remainingTimeInDays = Math.floor(item.remainingTime / 1000 / 60 / 60 / 24);
 
                 remainingTime = Math.abs(remainingTimeInDays);
                 timeString = "";
                 if (remainingTime >= 30) {
                     if (remainingTimeInDays < 0) {
-                        itemContainer.classList.add(
-                            "bg-danger-subtle",
-                            "border-danger"
-                        );
+                        itemContainer.classList.add("bg-danger-subtle", "border-danger");
                     } else {
                         itemContainer.classList.add("border-success-subtle");
                     }
-                    timeString =
-                        Math.floor(remainingTimeInDays / 30) + " Months";
+                    timeString = Math.floor(remainingTimeInDays / 30) + " Months";
                 } else if (remainingTime >= 7) {
                     if (remainingTimeInDays < 0) {
-                        itemContainer.classList.add(
-                            "bg-danger-subtle",
-                            "border-danger"
-                        );
+                        itemContainer.classList.add("bg-danger-subtle", "border-danger");
                     } else {
                         itemContainer.classList.add("border-success-subtle");
                     }
                     timeString = Math.floor(remainingTimeInDays / 7) + " Weeks";
                 } else {
                     if (remainingTimeInDays < 0) {
-                        itemContainer.classList.add(
-                            "bg-danger-subtle",
-                            "border-danger"
-                        );
+                        itemContainer.classList.add("bg-danger-subtle", "border-danger");
                     } else {
-                        itemContainer.classList.add(
-                            "bg-warning-subtle",
-                            "border-warning"
-                        );
+                        itemContainer.classList.add("bg-warning-subtle", "border-warning");
                     }
 
                     timeString = remainingTimeInDays + " Days";

@@ -67,7 +67,7 @@ search.on(
     debounce(500, () => {
         sortBy.val("best-match");
         displayRecipes();
-    })
+    }),
 );
 
 sortBy.on("input", displayRecipes);
@@ -98,12 +98,9 @@ function displayRecipes() {
         const instantiation = template.content.cloneNode(true);
 
         instantiation.getElementById("name").innerText = recipe.name;
-        instantiation.getElementById("description").innerText =
-            recipe.description;
+        instantiation.getElementById("description").innerText = recipe.description;
         instantiation.getElementById("image").src = recipe.image;
-        instantiation.getElementById(
-            "link"
-        ).href = `/recipe.html?id=${recipe.id}`;
+        instantiation.getElementById("link").href = `/recipe.html?id=${recipe.id}`;
 
         list.append(instantiation);
     }
@@ -134,8 +131,7 @@ function compareFnFor(strategy) {
     switch (strategy) {
         case "best-match":
             return (a, b) => {
-                if (a.score !== undefined && b.score !== undefined)
-                    return a.score - b.score;
+                if (a.score !== undefined && b.score !== undefined) return a.score - b.score;
                 else return a.name.localeCompare(b.name);
             };
         case "name":
@@ -156,7 +152,5 @@ function compareFnFor(strategy) {
 function searchRecipes(query) {
     if (query.length === 0) return [...recipeIndex._docs];
     else
-        return recipeIndex
-            .search(query)
-            .map((result) => ({ ...result.item, score: result.score }));
+        return recipeIndex.search(query).map((result) => ({ ...result.item, score: result.score }));
 }

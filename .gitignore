@@ -3,3 +3,5 @@
 node_modules/
 .vscode/
 FirebaseAPI_DTC15.js
+
+!.vscode/settings.json

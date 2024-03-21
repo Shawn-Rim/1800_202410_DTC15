@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <title>WasteNot</title>
@@ -47,6 +47,7 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css"
         />
+        <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
 
         <!-- Link to styles of your own -->
         <link rel="stylesheet" href="styles/style.css" />
@@ -159,8 +160,18 @@
                         <div class="card-body">
                             <h5 id="name" class="card-title"></h5>
                             <p id="description" class="card-text"></p>
+                            <div class="row mb-2 fs-6 text-body-secondary">
+                                <div class="col-md">
+                                    <p>Difficulty: <span id="difficulty"></span></p>
+                                </div>
+                                <div class="col-md">
+                                    <p>Cost: <span id="cost"></span></p>
+                                </div>
+                            </div>
                             <p class="card-text">
-                                <small class="text-body-secondary">Last updated 3 mins ago</small>
+                                <small class="text-body-secondary"
+                                    >Last updated <span id="last-updated"></span
+                                ></small>
                             </p>
                         </div>
                     </div>

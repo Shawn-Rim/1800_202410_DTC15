@@ -55,7 +55,7 @@
             class="container mx-auto d-flex flex-column justify-content-center align-items-center gap-4 my-4"
         >
             <header
-                class="container mx-auto d-flex flex-row justify-content-between align-items-center gap-4"
+                class="container mx-auto d-flex flex-row justify-content-between align-items-center gap-4 p-4"
             >
                 <h1 id="recipeName">Recipe</h1>
                 <div class="d-flex flex-row gap-2 align-items-center justify-content-center">
@@ -70,18 +70,29 @@
             <div
                 class="container mx-auto d-flex flex-column justify-content-center align-items-center gap-4"
             >
-                <img class="centered-image img-fluid rounded" width="400px" height="300px" />
+                <img
+                    id="recipeImage"
+                    class="centered-image img-fluid rounded"
+                    width="400px"
+                    height="300px"
+                />
                 <div
                     class="container mx-auto d-flex flex-row justify-content-between align-items-center px-4 text-center"
                 >
-                    <div id="difficultyPlaceholder">Stars</div>
+                    <div
+                        id="difficultyPlaceholder"
+                        class="d-flex flex-row justify-center gap-1 align-items-center"
+                    ></div>
                     <h3 id="rating">5.0</h3>
                 </div>
                 <div class="container mx-auto d-flex flex-row justify-content-between px-4">
-                    <div class="fw-lighter">Created at: <span id="createdAt"></span></div>
-                    <div class="">
+                    <div>
+                        <div class="fw-lighter">Created by: <span id="author"></span></div>
+                        <div class="fw-lighter">Created at: <span id="createdAt"></span></div>
+                    </div>
+                    <div>
                         <div>Time: <span id="estimatedTime">0 min</span></div>
-                        <div>Cost: $<span id="estimatedCost">0.00</span></div>
+                        <div>Cost: <span id="estimatedCost">0.00</span></div>
                     </div>
                 </div>
                 <div class="container mx-auto gap-2">
@@ -94,7 +105,7 @@
                 </div>
                 <div class="container mx-auto gap-2">
                     <h3>Instructions</h3>
-                    <ul id="instructions"></ul>
+                    <ol id="instructions"></ol>
                 </div>
             </div>
         </main>

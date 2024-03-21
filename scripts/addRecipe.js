@@ -2,13 +2,31 @@ const instructions = $("#instructions");
 const instructionInputTemplate = document.getElementById("instruction-input-template");
 const ingredients = $("#ingredients");
 const ingredientInputTemplate = document.getElementById("ingredient-input-template");
+const imagePreview = $("#image-preview");
+const form = $("#recipe-form");
+const submit = $("#submit");
+const progressBar = $("#progress-bar");
 
 $("#add-instruction").on("click", addInstruction);
 $("#add-ingredient").on("click", addIngredient);
-$("#recipe-form").on("submit", onSubmit);
+form.on("submit", onSubmit);
+$("#image").on("change", onImageChange);
 
 for (let i = 0; i < 3; i++) addInstruction();
 for (let i = 0; i < 3; i++) addIngredient();
+
+/**
+ * Handle updating the image preview when the image input changes
+ *
+ * @param {Event} event the input event from the image input
+ */
+function onImageChange(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    imagePreview.children("img").attr("src", URL.createObjectURL(file));
+    imagePreview.removeClass("hidden");
+}
 
 /**
  * Handle submitting the creation form
@@ -22,24 +40,78 @@ async function onSubmit(event) {
     const instructions = extractInstructions(data);
     const ingredients = extractIngredeints(data);
 
+    setLoading(true);
+
     const user = firebase.auth().currentUser;
     const recipeRef = db.collection("recipes").doc();
-    await recipeRef.set({
-        name: data.get("name"),
-        description: data.get("description"),
-        difficulty: parseInt(data.get("difficulty")),
-        estimatedCost: Math.floor(parseFloat(data.get("cost")) * 100),
-        instructions,
-        public: data.get("public") === "on",
-        owner: db.collection("users").doc(user.uid),
-        sharedWith: [],
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-    });
-
     const ingredientsRef = recipeRef.collection("ingredients");
-    await Promise.all(ingredients.map((ingredient) => ingredientsRef.add(ingredient)));
 
-    window.location.href = "/recipes.html";
+    try {
+        await recipeRef.set({
+            name: data.get("name"),
+            description: data.get("description"),
+            difficulty: parseInt(data.get("difficulty")),
+            estimatedCost: Math.floor(parseFloat(data.get("cost")) * 100),
+            instructions,
+            public: data.get("public") === "on",
+            owner: db.collection("users").doc(user.uid),
+            sharedWith: [],
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+        await Promise.all(ingredients.map((ingredient) => ingredientsRef.add(ingredient)));
+
+        const task = storage.ref("recipes").child(recipeRef.id).put(data.get("image"));
+        task.on("state_changed", (snapshot) => {
+            const progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+            updateProgressBar(progress);
+        });
+        await task;
+
+        await recipeRef.update({ image: await task.snapshot.ref.getDownloadURL() });
+
+        window.location.href = "/recipes.html";
+    } catch (e) {
+        console.error(e);
+        await recipeRef.delete();
+
+        // TODO: Show an error message
+    } finally {
+        setLoading(false);
+    }
+}
+
+/**
+ * Toggle the loading state of the form
+ *
+ * @param {boolean} loading whether the form is submitting
+ */
+function setLoading(loading) {
+    form.children("input, textarea, button").prop("disabled", loading);
+
+    if (loading) {
+        progressBar.removeClass("hidden");
+        updateProgressBar(0);
+
+        submit.html(
+            $("<div>")
+                .addClass("spinner-border")
+                .prop("role", "status")
+                .append($("<span>").addClass("visually-hidden").text("Loading...")),
+        );
+    } else {
+        submit.text("Create");
+        progressBar.addClass("hidden");
+    }
+}
+
+/**
+ * Update the progress bar to the given percent
+ *
+ * @param {number} percent the percent complete (0-100)
+ */
+function updateProgressBar(percent) {
+    progressBar.attr("aria-valuenow", percent);
+    progressBar.children().css("width", `${percent}%`).text(`${percent}%`);
 }
 
 /**

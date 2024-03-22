@@ -20,20 +20,22 @@ function saveGroceryItems() {
                 let expirationString = form.querySelector("#expirationDate").value;
                 let expirationDate =
                     expirationString === ""
-                        ? new Date()
+                        ? new Date(new Date().getTime() + 86400000)
                         : new Date(new Date(expirationString).getTime() + 86400000);
                 let cost = form.querySelector("#cost").value;
 
-                groceries.add({
-                    cost: parseFloat(cost),
-                    createdAt: new Date(),
-                    expiration: expirationDate,
-                    name: name,
-                    quantity: parseFloat(quantity),
-                    unit: unit,
-                });
-
-                console.log("Grocery item added successfully");
+                groceries
+                    .add({
+                        cost: parseFloat(cost),
+                        createdAt: new Date(),
+                        expiration: expirationDate,
+                        name: name,
+                        quantity: quantity,
+                        unit: unit,
+                    })
+                    .then(() => {
+                        console.log("Grocery item added successfully");
+                    });
             });
 
             await groceries.get();

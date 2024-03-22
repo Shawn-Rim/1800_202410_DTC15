@@ -1,5 +1,5 @@
 <!-- Header for large screen -->
-<div class="d-none d-lg-flex flex-row align-items-center">
+<!-- <div class="d-none d-lg-flex flex-row align-items-center">
     <div class="d-flex flex-row align-items-center">
         <div class="d-flex flex-row align-items-center ms-5">
             <span class="material-symbols-outlined md-24"> add_circle </span>
@@ -14,29 +14,55 @@
             <a href="/favoriteRecipes.html" class="header-link">Favorite Recipes</a>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- Sticky footer for small screen -->
-<div class="d-flex d-lg-none flex-row justify-content-evenly align-items-center">
+<style>
+    .icons:hover {
+        color: darkgray;
+    }
+</style>
+<div
+    class="d-flex d-lg-none flex-row justify-content-evenly align-items-center fixed-bottom bg-secondary-subtle"
+>
     <div class="d-flex flex-column align-items-center justify-content-center">
         <a
-            class="icon d-flex align-items-center justify-content-center"
+            class="d-flex align-items-center justify-content-center link-dark link-underline-opacity-0"
             href="../favoriteRecipes.html"
         >
-            <span class="material-symbols-outlined md-36"> favorite </span>
+            <span class="material-symbols-outlined md-36 icons"> favorite </span>
         </a>
-        <div>Favorites</div>
+        <a href="../favoriteRecipes.html" class="link-body-emphasis link-underline-opacity-0"
+            >Favorites</a
+        >
     </div>
     <div class="d-flex flex-column align-items-center justify-content-center">
-        <a class="icon d-flex align-items-center justify-content-center" href="../addGrocery.html">
-            <span class="material-symbols-outlined md-36"> add_circle </span>
+        <a
+            class="d-flex align-items-center justify-content-center link-dark link-underline-opacity-0"
+            href="../main.html"
+        >
+            <span class="material-symbols-outlined md-36 icons"> kitchen </span>
         </a>
-        <div>Add Grocery</div>
+        <a href="../main.html" class="link-body-emphasis link-underline-opacity-0">Grocery List</a>
     </div>
     <div class="d-flex flex-column align-items-center justify-content-center">
-        <a class="icon d-flex align-items-center justify-content-center" href="#">
-            <span class="material-symbols-outlined md-36">library_books</span>
+        <a
+            class="d-flex align-items-center justify-content-center link-dark link-underline-opacity-0"
+            href="../addGrocery.html"
+        >
+            <span class="material-symbols-outlined md-36 icons"> add_circle </span>
         </a>
-        <div>Recipes</div>
+        <a href="../addGrocery.html" class="link-body-emphasis link-underline-opacity-0"
+            >Add Groceries</a
+        >
+    </div>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <a
+            class="d-flex align-items-center justify-content-center link-dark link-underline-opacity-0"
+            href="../recipes.html"
+        >
+            <span class="material-symbols-outlined md-36 icons">library_books</span>
+        </a>
+        <a href="../recipes.html" class="link-body-emphasis link-underline-opacity-0">Recipes</a>
     </div>
 </div>

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <title>WasteNot</title>
@@ -65,7 +65,7 @@
                                     placeholder="Enter your username"
                                 />
                             </div>
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input
                                     type="email"
@@ -82,7 +82,7 @@
                                     id="password"
                                     placeholder="Enter your password"
                                 />
-                            </div>
+                            </div> -->
                             <div class="mb-3">
                                 <label for="notifications" class="form-label">Notifications</label>
                                 <div class="form-check">
@@ -116,7 +116,13 @@
                                     >Subscribe to newsletter</label
                                 >
                             </div>
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button
+                                type="submit"
+                                class="btn btn-success"
+                                onclick="savePersonalInfo()"
+                            >
+                                Save
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -132,6 +138,7 @@
         <script src="scripts/FirebaseAPI_DTC15.js"></script>
         <script src="scripts/components.js"></script>
         <script src="scripts/authentication.js" data-require="authenticated"></script>
+        <script src="scripts/account.js"></script>
 
         <!-- Page scripts -->
         <!-- <script src="./scripts/script.js"></script> -->

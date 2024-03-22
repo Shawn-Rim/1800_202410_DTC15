@@ -31,10 +31,14 @@ displayPersonalInfo();
 function savePersonalInfo() {
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
+            let userDoc = await db.collection("users").doc(user.uid).get();
+            let favorites = userDoc.data().favouriteRecipes;
+
             await db.collection("users").doc(user.uid).set({
                 displayName: username.value,
                 notification: notificationOn.checked,
                 subscription: newsletter.checked,
+                favouriteRecipes: favorites,
             });
 
             displayPersonalInfo();

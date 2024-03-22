@@ -49,6 +49,14 @@
         <!-- Page layout -->
         <nav id="navbar"></nav>
 
+        <div
+            id="writeSuccess"
+            class="container bg-success-subtle px-4 py-2 hidden d-flex flex-row justify-content-between align-items-center"
+        >
+            <div>Success!</div>
+            <span class="material-symbols-outlined pointer" id="closeBtn">close</span>
+        </div>
+
         <!-- Page content -->
         <main>
             <div class="container">
@@ -116,14 +124,8 @@
                                     >Subscribe to newsletter</label
                                 >
                             </div>
-                            <button
-                                type="submit"
-                                class="btn btn-success"
-                                onclick="savePersonalInfo()"
-                            >
-                                Save
-                            </button>
                         </form>
+                        <button class="btn btn-success" onclick="savePersonalInfo()">Save</button>
                     </div>
                 </div>
             </div>

@@ -73,6 +73,10 @@ span.pointer {
         position: absolute;
         bottom: 80px;
     }
+
+    main {
+        padding-bottom: 70px;
+    }
 }
 
 /* #indexFooter li {

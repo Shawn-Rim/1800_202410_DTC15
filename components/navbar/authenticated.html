@@ -12,11 +12,54 @@
         >
             <span class="navbar-toggler-icon"></span>
         </button>
+
+        <button
+            class="btn btn-light text-center p-0 me-1 d-none d-lg-block"
+            style="width: 36px; height: 36px"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarHeader"
+            aria-controls="navbarHeader"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="material-symbols-outlined md-36"> arrow_drop_down </span>
+        </button>
+        <div id="navbarHeader" class="collapse bg-body-tertiary z-3 py-2 shadow rounded-bottom">
+            <a href="../../main.html" class="nav-link"
+                ><div class="navbarLink p-4 m-0 d-flex flex-row align-items-center gap-2">
+                    <span class="material-symbols-outlined md-24"> kitchen </span>
+                    <div>Grocery List</div>
+                </div></a
+            >
+            <a href="../../addGrocery.html" class="nav-link"
+                ><div class="navbarLink p-4 m-0 d-flex flex-row align-items-center gap-2">
+                    <span class="material-symbols-outlined md-24"> add_circle </span>
+                    <div>Add Groceries</div>
+                </div></a
+            >
+            <a href="../../recipes.html" class="nav-link"
+                ><div class="navbarLink p-4 m-0 d-flex flex-row align-items-center gap-2">
+                    <span class="material-symbols-outlined md-24"> library_books </span>
+                    <div>Recipes</div>
+                </div></a
+            >
+            <a href="../../favoriteRecipes.html" class="nav-link"
+                ><div class="navbarLink p-4 m-0 d-flex flex-row align-items-center gap-2">
+                    <span class="material-symbols-outlined md-24"> favorite </span>
+                    <div>Favorites</div>
+                </div></a
+            >
+        </div>
+
         <a class="navbar-brand" href="#"><b>WasteNot</b></a>
-        <a href="#" class="link-dark text-center d-block d-lg-none" style="width: 73px"
+        <a href="/settings.html" class="link-dark text-center d-block d-lg-none" style="width: 73px"
             ><span class="material-symbols-outlined md-36"> settings </span></a
         >
-        <div class="collapse navbar-collapse bg-white z-3" id="navbarNavAltMarkup">
+        <div
+            class="collapse navbar-collapse bg-body-tertiary z-3 rounded-bottom shadow shadow-none-lg"
+            id="navbarNavAltMarkup"
+        >
             <div class="navbar-nav">
                 <a class="nav-link navbarLink" aria-current="page" href="/main.html">Home</a>
                 <a class="nav-link navbarLink" href="about.html">Help</a>

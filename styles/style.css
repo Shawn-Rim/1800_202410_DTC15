@@ -26,6 +26,13 @@
     border-radius: 10px;
 }
 
+#navbarHeader {
+    position: absolute;
+    top: 64px;
+    left: 5px;
+    width: 30%;
+}
+
 .material-symbols-outlined.md-18 {
     font-size: 18px;
 }
@@ -84,7 +91,7 @@ span.pointer {
 
     #navbarNavAltMarkup {
         position: absolute;
-        top: 60px;
+        top: 64px;
         left: 5px;
         width: 100%;
     }
@@ -152,11 +159,10 @@ footer#footer {
     background-color: lightgray;
 }
 
-@media (max-width: 768px) {
-    /* #footer {
-        display: flex;
-        flex-direction: column;
-    } */
+@media (min-width: 992px) {
+    #navbarNavAltMarkup {
+        box-shadow: none !important;
+    }
 }
 
 .hidden {

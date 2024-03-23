@@ -66,19 +66,20 @@
                 class="container d-flex justify-content-between align-items-center border border-4 rounded p-2"
                 id="itemContainer"
             >
-                <div class="d-flex flex-row w-75" id="itemInformation">
-                    <div class="ps-2 py-3 fs-5" id="itemName">ListName</div>
-                    <div
-                        class="d-flex flex-column flex-lg-row justify-content-between justify-content-lg-start align-items-start align-items-lg-center gap-lg-3"
-                        id="information"
-                    >
-                        <div id="quantityDiv">
-                            Qt: <span id="quantity"></span>
-                            <span id="unit"></span>
-                        </div>
-                        <div>Expiring in <span id="expiryDate"></span></div>
-                    </div>
-                </div>
+                <a class="nav-link container" id="link"
+                    ><div class="d-flex flex-row w-75" id="itemInformation">
+                        <div class="ps-2 py-3 fs-5" id="itemName">ListName</div>
+                        <div
+                            class="d-flex flex-column flex-lg-row justify-content-between justify-content-lg-start align-items-start align-items-lg-center gap-lg-3"
+                            id="information"
+                        >
+                            <div id="quantityDiv">
+                                Qt: <span id="quantity"></span>
+                                <span id="unit"></span>
+                            </div>
+                            <div>Expiring in <span id="expiryDate"></span></div>
+                        </div></div
+                ></a>
                 <button type="button" class="btn btn-light text-center" onclick="deleteItem(this)">
                     <span class="material-symbols-outlined lg-24"> delete </span>
                 </button>

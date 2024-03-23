@@ -61,6 +61,8 @@ function displayList() {
                 newTemplate.getElementById("unit").innerText = item.unit;
                 let itemContainer = newTemplate.getElementById("itemContainer");
 
+                newTemplate.getElementById("link").href = `/groceryItem.html?id=${item.id}`;
+
                 remainingTimeInDays = Math.floor(item.remainingTime / 1000 / 60 / 60 / 24);
 
                 remainingTime = Math.abs(remainingTimeInDays);

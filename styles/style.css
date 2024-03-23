@@ -91,9 +91,13 @@ span.pointer {
 
     #navbarNavAltMarkup {
         position: absolute;
-        top: 64px;
+        top: 60px;
         left: 5px;
         width: 100%;
+    }
+
+    #navbarHeader {
+        display: none !important;
     }
 
     .navbarBtn {

@@ -1,3 +1,5 @@
+const url = new URL(window.location.href);
+
 const loading = $("#loading");
 const list = $("#recipe-list");
 const template = document.getElementById("recipe-card-template");
@@ -10,6 +12,7 @@ const filterDifficultyEnd = $("#filter-difficulty-end");
 const filterCost = document.getElementById("filter-cost");
 const filterCostStart = $("#filter-cost-start");
 const filterCostEnd = $("#filter-cost-end");
+const filterFavoritedOnly = $("#filter-favorited-only");
 
 const moneyFormat = wNumb({
     decimals: 2,
@@ -27,6 +30,7 @@ const recipeIndex = new Fuse([], {
         { name: "description", weight: 1 },
     ],
 });
+const favoritedRecipes = new Set();
 
 search.on(
     "input",
@@ -85,12 +89,24 @@ filterCost.noUiSlider.on("update", function () {
     displayRecipes();
 });
 
+filterFavoritedOnly.prop("checked", url.searchParams.get("favorites") === "true");
+filterFavoritedOnly.on("change", () => {
+    url.searchParams.set("favorites", filterFavoritedOnly.prop("checked"));
+    window.history.pushState({}, "", url.toString());
+    displayRecipes();
+});
+
 firebase.auth().onAuthStateChanged(async (user) => {
     if (!user) return;
 
     loading.removeClass("hidden");
-    const recipesRef = await db.collection("recipes").get();
+    const [usersRef, recipesRef] = await Promise.all([
+        db.collection("users").doc(user.uid).get(),
+        db.collection("recipes").get(),
+    ]);
     loading.addClass("hidden");
+
+    for (const recipeRef of usersRef.data().favouriteRecipes) favoritedRecipes.add(recipeRef.id);
 
     const recipes = recipesRef.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 
@@ -156,11 +172,13 @@ function sortRecipes(recipes) {
 function applyFilters(recipes) {
     const [difficultyStart, difficultyEnd] = filterDifficulty.noUiSlider.get(true);
     const [costStart, costEnd] = filterCost.noUiSlider.get(true);
+    const favoritedOnly = filterFavoritedOnly.prop("checked");
     return recipes
         .filter(
             (recipe) => recipe.difficulty >= difficultyStart && recipe.difficulty <= difficultyEnd,
         )
-        .filter((recipe) => recipe.estimatedCost >= costStart && recipe.estimatedCost <= costEnd);
+        .filter((recipe) => recipe.estimatedCost >= costStart && recipe.estimatedCost <= costEnd)
+        .filter((recipe) => !favoritedOnly || favoritedRecipes.has(recipe.id));
 }
 
 /**

@@ -111,7 +111,7 @@
             <div class="collapse card mt-2" id="filters">
                 <div class="card-header">Filters</div>
                 <div class="card-body px-4">
-                    <div class="row gy-2 gx-4">
+                    <div class="row g-4">
                         <div class="col-md">
                             <label for="filter-difficulty">
                                 Difficulty:
@@ -129,6 +129,20 @@
                                 <span id="filter-cost-end">$100.00</span>
                             </label>
                             <div id="filter-cost" class="slider"></div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-auto">
+                            <div class="form-check form-switch">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="filter-favorited-only"
+                                />
+                                <label class="form-check-label" for="filter-favorited-only">
+                                    Only favorited recipes
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>

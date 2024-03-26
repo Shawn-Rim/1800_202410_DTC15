@@ -10,6 +10,11 @@ function displayRecipeInfo() {
                 .doc(recipeID)
                 .collection("ingredients")
                 .get();
+            const reviews = await db
+                .collection("recipes")
+                .doc(recipeID)
+                .collection("reviews")
+                .get();
             let author = await db.collection("users").doc(recipe.data().owner.id).get();
 
             document.getElementById("author").innerText = author.exists
@@ -44,9 +49,26 @@ function displayRecipeInfo() {
                 document.getElementById("instructions").innerHTML += `<li>${instruction}</li>`;
             });
 
+            const ratings = [];
+            const reviewsContainer = document.getElementById("reviews");
+            reviews.forEach(async (doc) => {
+                const review = doc.data();
+                const stars = "<span class='material-symbols-outlined'>star</span>".repeat(
+                    review.rating,
+                );
+                ratings.push(review.rating);
+
+                const user = await db.collection("users").doc(doc.id).get();
+                const displayName = user.exists ? user.data().displayName : "unknown";
+
+                reviewsContainer.innerHTML += `<li class="row"><p class="col"><b>${displayName}</b>${
+                    review.comment.length > 0 ? " - " + review.comment : ""
+                }</p><div class="col">${stars}</div></li>`;
+            });
+            document.getElementById("rating").innerText =
+                ratings.reduce((a, b) => a + b, 0) / ratings.length;
+
             // Need further implementation
-            // document.getElementById("author").innerText = author.data().name;
-            // document.getElementById("rating").innerText = "5.0";
             // document.getElementById("estimatedTime").innerText = "0 min";
         } else {
             console.log("No user logged in.");

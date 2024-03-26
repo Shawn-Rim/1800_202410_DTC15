@@ -12,6 +12,9 @@ function displayRecipeInfo() {
                 .get();
             let author = await db.collection("users").doc(recipe.data().owner.id).get();
 
+            document.getElementById("author").innerText = author.exists
+                ? author.data().displayName
+                : "unknown";
             document.getElementById("recipeName").innerText = recipe.data().name;
             createdTime = recipe.data().createdAt.toDate().toLocaleDateString();
             document.getElementById("createdAt").innerText = createdTime;

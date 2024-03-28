@@ -47,5 +47,5 @@ function saveGroceryItems() {
 }
 
 function removeForm(element) {
-    element.parentElement.parentElement.remove();
+    $(element).parentsUntil("#formPlaceholder").remove();
 }

@@ -55,14 +55,24 @@
         ></footer>
 
         <main
-            class="container mx-auto my-4 d-flex flex-column justify-content-center align-items-center gap-4"
+            class="container mx-auto mb-4 d-flex flex-column justify-content-center align-items-center gap-4"
         >
+            <div
+                class="d-flex flex-row justify-content-center align-items-center sticky-top pt-4 justify-self-end align-self-end"
+            >
+                <a
+                    class="btn btn-outline-success px-3 py-0 border-2 rounded-pill text-center"
+                    onclick="saveGroceryItems()"
+                >
+                    Save
+                </a>
+            </div>
             <div
                 id="formPlaceholder"
                 class="container mx-auto d-flex flex-column justify-content-center align-items-center gap-2"
             ></div>
             <button
-                class="btn btn-light px-4 py-2 text-center d-flex justify-content-center align-items-end w-50 gap-2"
+                class="btn btn-outline-dark px-4 py-2 text-center d-flex justify-content-center align-items-end w-50 gap-2 rounded-pill"
                 id="addbtn"
                 onclick="addGroceryItemForm()"
             >
@@ -70,11 +80,6 @@
                 <span>Add grocery</span>
             </button>
         </main>
-        <div class="d-flex flex-row justify-content-end align-items-end fixed-bottom">
-            <a class="btn btn-light px-2" id="saveBtn" onclick="saveGroceryItems()">
-                <span class="material-symbols-outlined md-48"> save </span>
-            </a>
-        </div>
 
         <template id="formTemplate">
             <div class="col card formInput">

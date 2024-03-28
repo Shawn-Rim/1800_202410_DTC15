@@ -14,6 +14,19 @@ document.getElementById("closeErrorBtn").addEventListener("click", () => {
     errorMsg.classList.add("hidden");
 });
 
+function deleteAccount() {
+    const user = firebase.auth().currentUser;
+
+    user.delete()
+        .then(() => {
+            window.location.href = "/index.html";
+        })
+        .catch((error) => {
+            console.log("error deleting account", error);
+            errorMsg.classList.remove("hidden");
+        });
+}
+
 function changeEmail() {
     const user = firebase.auth().currentUser;
     const newEmail = email.value;

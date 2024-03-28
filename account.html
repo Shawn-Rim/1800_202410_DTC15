@@ -61,9 +61,20 @@
         <main>
             <div class="container">
                 <div class="card">
-                    <div class="card-header">Account Settings</div>
+                    <div
+                        class="card-header d-flex flex-row justify-content-between align-items-center"
+                    >
+                        <div>Account Settings</div>
+                        <button
+                            class="btn btn-outline-dark px-2 py-0 rounded-pill"
+                            id="editBtn"
+                            onclick="enableEdit()"
+                        >
+                            Edit
+                        </button>
+                    </div>
                     <div class="card-body">
-                        <form>
+                        <fieldset id="personalInfoForm" disabled>
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
                                 <input
@@ -81,16 +92,16 @@
                                     id="email"
                                     placeholder="Enter your email"
                                 />
-                            </div>
+                            </div> -->
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="password" class="form-label">Change Password</label>
                                 <input
                                     type="password"
                                     class="form-control"
                                     id="password"
                                     placeholder="Enter your password"
                                 />
-                            </div> -->
+                            </div>
                             <div class="mb-3">
                                 <label for="notifications" class="form-label">Notifications</label>
                                 <div class="form-check">
@@ -124,7 +135,7 @@
                                     >Subscribe to newsletter</label
                                 >
                             </div>
-                        </form>
+                        </fieldset>
                         <button class="btn btn-success" onclick="savePersonalInfo()">Save</button>
                     </div>
                 </div>

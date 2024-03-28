@@ -61,18 +61,6 @@
     transition: 0.3s;
 }
 
-#itemInformation #itemName {
-    width: 45% !important;
-}
-
-#itemInformation #information {
-    width: 55% !important;
-}
-
-#itemInformation #information #quantityDiv {
-    width: 40% !important;
-}
-
 span.pointer {
     cursor: pointer !important;
 }

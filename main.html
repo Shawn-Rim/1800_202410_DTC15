@@ -63,26 +63,37 @@
 
         <template id="groceryListItemTemplate">
             <div
-                class="container d-flex justify-content-between align-items-center border border-4 rounded p-2"
+                class="container mx-auto card d-flex flex-row justify-content-between align-items-center rounded"
                 id="itemContainer"
             >
-                <a class="nav-link container" id="link"
-                    ><div class="d-flex flex-row w-75" id="itemInformation">
-                        <div class="ps-2 py-3 fs-5" id="itemName">ListName</div>
+                <a class="col-10 nav-link container" id="link"
+                    ><div
+                        class="col-12 d-flex flex-row gap-3 align-items-center"
+                        id="itemInformation"
+                    >
+                        <div class="col-4 fs-5" id="itemName">ListName</div>
                         <div
-                            class="d-flex flex-column flex-lg-row justify-content-between justify-content-lg-start align-items-start align-items-lg-center gap-lg-3"
+                            class="col-6 d-flex flex-column flex-md-row justify-content-between justify-content-md-start align-items-start align-items-md-center gap-md-3"
                             id="information"
                         >
-                            <div id="quantityDiv">
+                            <div id="quantityDiv" class="col-md-6">
                                 Qt: <span id="quantity"></span>
                                 <span id="unit"></span>
                             </div>
-                            <div>Expiring in <span id="expiryDate"></span></div>
+                            <div class="col-md-6">Expiring in <span id="expiryDate"></span></div>
                         </div></div
                 ></a>
-                <button type="button" class="btn btn-light text-center" onclick="deleteItem(this)">
-                    <span class="material-symbols-outlined lg-24"> delete </span>
-                </button>
+                <div class="col-1 d-flex flex-column gap-2">
+                    <button type="button" class="btn btn-outline-danger w-100">
+                        <span
+                            class="material-symbols-outlined"
+                            style="font-size: 1rem"
+                            onclick="deleteItem(this)"
+                        >
+                            delete
+                        </span>
+                    </button>
+                </div>
                 <span id="documentID" class="d-none"></span>
             </div>
         </template>

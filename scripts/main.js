@@ -69,23 +69,19 @@ function displayList() {
                 timeString = "";
                 if (remainingTime >= 30) {
                     if (remainingTimeInDays < 0) {
-                        itemContainer.classList.add("bg-danger-subtle", "border-danger");
-                    } else {
-                        itemContainer.classList.add("border-success-subtle");
+                        itemContainer.classList.add("bg-danger-subtle");
                     }
                     timeString = Math.floor(remainingTimeInDays / 30) + " Months";
                 } else if (remainingTime >= 7) {
                     if (remainingTimeInDays < 0) {
-                        itemContainer.classList.add("bg-danger-subtle", "border-danger");
-                    } else {
-                        itemContainer.classList.add("border-success-subtle");
+                        itemContainer.classList.add("bg-danger-subtle");
                     }
                     timeString = Math.floor(remainingTimeInDays / 7) + " Weeks";
                 } else {
                     if (remainingTimeInDays < 0) {
-                        itemContainer.classList.add("bg-danger-subtle", "border-danger");
+                        itemContainer.classList.add("bg-danger-subtle");
                     } else {
-                        itemContainer.classList.add("bg-warning-subtle", "border-warning");
+                        itemContainer.classList.add("bg-warning-subtle");
                     }
 
                     timeString = remainingTimeInDays + " Days";

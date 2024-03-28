@@ -30,7 +30,7 @@
     position: absolute;
     top: 64px;
     left: 5px;
-    width: 30%;
+    width: 100%;
 }
 
 .icon-filled {
@@ -158,6 +158,10 @@ footer#footer {
 @media (min-width: 992px) {
     #navbarNavAltMarkup {
         box-shadow: none !important;
+    }
+
+    .visible-lg {
+        visibility: visible !important;
     }
 }
 

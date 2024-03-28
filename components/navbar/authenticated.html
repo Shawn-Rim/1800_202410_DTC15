@@ -12,10 +12,26 @@
         >
             <span class="navbar-toggler-icon"></span>
         </button>
-
+        <a class="navbar-brand" href="#"><b>WasteNot</b></a>
+        <div
+            class="collapse navbar-collapse bg-body-tertiary z-3 rounded-bottom shadow shadow-none-lg"
+            id="navbarNavAltMarkup"
+        >
+            <div class="navbar-nav">
+                <a class="nav-link navbarLink" aria-current="page" href="/app.html">Home</a>
+                <a class="nav-link navbarLink" href="about.html">Help</a>
+                <a class="nav-link navbarLink" href="/account.html">Profile</a>
+                <button
+                    type="button"
+                    class="nav-link btn btn-outline-danger navbarBtn text-start text-danger"
+                    onclick="firebase.auth().signOut()"
+                >
+                    Log Out
+                </button>
+            </div>
+        </div>
         <button
-            class="btn btn-light text-center p-0 me-1 d-none d-lg-block"
-            style="width: 36px; height: 36px"
+            class="navbar-toggler invisible visible-lg d-lg-block"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarHeader"
@@ -23,7 +39,7 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
         >
-            <span class="material-symbols-outlined md-36"> arrow_drop_down </span>
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div id="navbarHeader" class="collapse bg-body-tertiary z-3 py-2 shadow rounded-bottom">
             <a href="../../main.html" class="nav-link"
@@ -51,30 +67,5 @@
                 </div></a
             >
         </div>
-
-        <a class="navbar-brand" href="#"><b>WasteNot</b></a>
-        <a href="/settings.html" class="link-dark text-center d-block d-lg-none" style="width: 73px"
-            ><span class="material-symbols-outlined md-36"> settings </span></a
-        >
-        <div
-            class="collapse navbar-collapse bg-body-tertiary z-3 rounded-bottom shadow shadow-none-lg"
-            id="navbarNavAltMarkup"
-        >
-            <div class="navbar-nav">
-                <a class="nav-link navbarLink" aria-current="page" href="/app.html">Home</a>
-                <a class="nav-link navbarLink" href="about.html">Help</a>
-                <a class="nav-link navbarLink" href="/account.html">Profile</a>
-                <button
-                    type="button"
-                    class="nav-link btn btn-outline-danger navbarBtn text-start text-danger"
-                    onclick="firebase.auth().signOut()"
-                >
-                    Log Out
-                </button>
-            </div>
-        </div>
-        <a href="/settings.html" class="link-dark text-center d-none d-lg-block" style="width: 73px"
-            ><span class="material-symbols-outlined md-36"> settings </span></a
-        >
     </div>
 </nav>

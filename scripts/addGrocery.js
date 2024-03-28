@@ -26,7 +26,7 @@ function saveGroceryItems() {
 
                 groceries
                     .add({
-                        cost: parseInt(cost) * 100,
+                        cost: cost * 100,
                         createdAt: new Date(),
                         expiration: expirationDate,
                         name: name,

@@ -54,7 +54,14 @@
             class="container bg-success-subtle px-4 py-2 hidden d-flex flex-row justify-content-between align-items-center"
         >
             <div>Success!</div>
-            <span class="material-symbols-outlined pointer" id="closeBtn">close</span>
+            <span class="material-symbols-outlined pointer" id="closeSuccessBtn">close</span>
+        </div>
+        <div
+            id="writeError"
+            class="container bg-danger-subtle px-4 py-2 hidden d-flex flex-row justify-content-between align-items-center"
+        >
+            <div>Error! Try logging in again.</div>
+            <span class="material-symbols-outlined pointer" id="closeErrorBtn">close</span>
         </div>
 
         <!-- Page content -->
@@ -66,7 +73,7 @@
                     >
                         <div>Account Settings</div>
                         <button
-                            class="btn btn-outline-dark px-2 py-0 rounded-pill"
+                            class="btn btn-outline-dark px-3 py-0 rounded-pill"
                             id="editBtn"
                             onclick="enableEdit()"
                         >
@@ -82,24 +89,6 @@
                                     class="form-control"
                                     id="username"
                                     placeholder="Enter your username"
-                                />
-                            </div>
-                            <!-- <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input
-                                    type="email"
-                                    class="form-control"
-                                    id="email"
-                                    placeholder="Enter your email"
-                                />
-                            </div> -->
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Change Password</label>
-                                <input
-                                    type="password"
-                                    class="form-control"
-                                    id="password"
-                                    placeholder="Enter your password"
                                 />
                             </div>
                             <div class="mb-3">
@@ -140,9 +129,128 @@
                     </div>
                 </div>
             </div>
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">Email & Password</div>
+                    <div class="card-body">
+                        <label for="email" class="form-label">Email</label>
+                        <div
+                            class="d-flex flex-row justify-content-between align-items-center py-2"
+                        >
+                            <input
+                                type="email"
+                                class="form-control"
+                                style="border-top-right-radius: 0; border-bottom-right-radius: 0"
+                                id="email"
+                                placeholder="Enter your email"
+                            />
+                            <button
+                                class="btn btn-outline-danger rounded-end"
+                                style="border-top-left-radius: 0; border-bottom-left-radius: 0"
+                                data-bs-toggle="modal"
+                                data-bs-target="#emailDialog"
+                            >
+                                Change
+                            </button>
+                        </div>
+                        <br />
+                        <label for="password" class="form-label">Change Password</label>
+                        <div
+                            class="d-flex flex-row justify-content-between align-items-center py-2"
+                        >
+                            <input
+                                type="password"
+                                class="form-control"
+                                style="border-top-right-radius: 0; border-bottom-right-radius: 0"
+                                id="password"
+                                placeholder="Enter your password"
+                            />
+                            <button
+                                class="btn btn-outline-danger rounded-end"
+                                style="border-top-left-radius: 0; border-bottom-left-radius: 0"
+                                data-bs-toggle="modal"
+                                data-bs-target="#passwordDialog"
+                            >
+                                Change
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
-        <!-- <main>...<main> -->
-        <!-- <footer class="component" id="footer"></footer> -->
+
+        <div id="emailDialog" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Email Change Confirmation</h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure want to change your email?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-outline-danger"
+                            data-bs-dismiss="modal"
+                            onclick="changeEmail()"
+                        >
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="passwordDialog" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Password Change Confirmation</h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to change your password?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-outline-danger"
+                            onclick="changePassword()"
+                            data-bs-dismiss="modal"
+                        >
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <footer
             class="component fixed-bottom sticky-lg-top bg-secondary-subtle"
             id="stickyFooter"

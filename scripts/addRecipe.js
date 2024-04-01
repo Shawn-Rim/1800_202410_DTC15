@@ -142,12 +142,20 @@ function extractIngredeints(form) {
 
     const ingredients = [];
     for (let i = 0; i < names.length; i++) {
-        const name = names[i];
-        const quantity = quantities[i];
-        const unit = units[i];
+        db.collection("ingredients")
+            .where("name", "==", names[i])
+            .get()
+            .then((ref) => {
+                ref.forEach((doc) => {
+                    const ingredientId = doc.id;
+                    const name = names[i];
+                    const quantity = quantities[i];
+                    const unit = units[i];
 
-        if (name.length === 0 || quantity === 0 || isNaN(quantity)) continue;
-        else ingredients.push({ name, quantity, unit });
+                    if (name.length === 0 || quantity === 0 || isNaN(quantity));
+                    else ingredients.push({ ingredientId, name, quantity, unit });
+                });
+            });
     }
 
     return ingredients;
@@ -197,4 +205,35 @@ function removeElementAt(parent, index) {
     children
         .not((i) => i === index)
         .each((i, element) => $("span.input-group-text", element).text(i + 1));
+}
+
+async function filterFunction(element) {
+    let input = element.value.toLowerCase();
+    let div = element.nextElementSibling;
+    div.innerHTML = "";
+    let queries = await db
+        .collection("ingredients")
+        .where("name", ">", input)
+        .orderBy("name")
+        .limit(20)
+        .get();
+
+    let template = document.getElementById("dropdownItemTemplate");
+
+    let matches = new Set();
+    queries.forEach((doc) => {
+        if (doc.data().name.includes(input)) {
+            matches.add(doc.data().name);
+        }
+    });
+
+    matches.forEach((match) => {
+        let newTemplate = template.content.cloneNode(true);
+        newTemplate.getElementById("ingredient").innerText = match;
+        newTemplate.getElementById("ingredient").addEventListener("click", function () {
+            element.value = match;
+        });
+
+        div.appendChild(newTemplate);
+    });
 }

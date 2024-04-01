@@ -216,9 +216,17 @@
                                 name="ingredient-quantity"
                             />
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="dropdown col-12 col-md-6">
                             <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="ingredient-name" />
+                            <input
+                                type="text"
+                                placeholder="Search.."
+                                id="myInput"
+                                class="form-control dropdown-input"
+                                name="ingredient-name"
+                                onkeyup="filterFunction(this)"
+                            />
+                            <div id="myDropdown" class="dropdown-content"></div>
                         </div>
                         <div class="col-12 col-md-3">
                             <label class="form-label">Unit</label>
@@ -234,6 +242,10 @@
                     </div>
                 </div>
             </div>
+        </template>
+
+        <template id="dropdownItemTemplate">
+            <div id="ingredient"></div>
         </template>
 
         <footer

@@ -65,7 +65,7 @@ async function onSubmit(event) {
 
     const data = new FormData(event.target);
     const instructions = extractInstructions(data);
-    const ingredients = extractIngredeints(data);
+    const ingredients = extractIngredients(data);
 
     setLoading(true);
 
@@ -168,7 +168,7 @@ function extractInstructions(form) {
  * @param {FormData} form the form submission
  * @returns all the ingredients
  */
-function extractIngredeints(form) {
+function extractIngredients(form) {
     const ids = form.getAll("ingredient-id").map((id) => id.trim());
     const names = form.getAll("ingredient-name").map((name) => name.trim());
     const quantities = form

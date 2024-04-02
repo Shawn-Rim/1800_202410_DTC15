@@ -5,6 +5,7 @@ ui.start("#firebase-auth", {
         signInSuccessWithAuthResult,
         uiShown: () => $("#loader").hide(),
     },
+    signInSuccessUrl: "app.html",
     signInFlow: "popup",
     signInOptions: [
         firebase.auth.EmailAuthProvider.PROVIDER_ID,

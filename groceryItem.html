@@ -59,6 +59,13 @@
                 <div class="card-body d-flex flex-column gap-4 my-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <button
+                            class="btn btn-outline-dark rounded-pill fs-6 fw-light py-0 bi bi-star"
+                            id="favoriteBtn"
+                            onclick="toggleFavorite()"
+                        >
+                            Favorite
+                        </button>
+                        <button
                             class="btn btn-outline-dark rounded-pill fs-6 fw-light py-0"
                             id="editBtn"
                             onclick="enableEdit()"
@@ -70,7 +77,7 @@
                             id="deleteBtn"
                             onclick="deleteItem()"
                         >
-                            delete
+                            Delete
                         </button>
                     </div>
                     <fieldset id="itemInfoField" class="d-flex flex-row gap-2" disabled>

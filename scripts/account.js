@@ -55,13 +55,6 @@ function changePassword() {
 
     user.updatePassword(newPassword)
         .then(async () => {
-            await db.collection("users").doc(user.uid).set(
-                {
-                    password: newPassword,
-                },
-                { merge: true },
-            );
-
             displayPersonalInfo();
             success.classList.remove("hidden");
         })
@@ -80,14 +73,12 @@ function displayPersonalInfo() {
             let notification = userDoc.data().notification;
             let subscription = userDoc.data().subscription;
             let displayEmail = userDoc.data().email;
-            let displayPassword = userDoc.data().password;
 
             if (displayName) username.value = displayName;
             if (notification) notificationOn.checked = true;
             else notificationOff.checked = true;
             if (subscription) newsletter.checked = true;
             email.value = displayEmail;
-            password.value = displayPassword;
         } else {
             console.log("No user logged in.");
         }

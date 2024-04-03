@@ -178,13 +178,21 @@ function extractIngredients(form) {
 
     const ingredients = [];
     for (let i = 0; i < names.length; i++) {
-        const id = ids[i] === "" ? undefined : ids[i];
-        const name = names[i];
-        const quantity = quantities[i];
-        const unit = units[i];
+        db.collection("ingredients")
+            .where("name", "==", names[i])
+            .get()
+            .then((ref) => {
+                ref.forEach((doc) => {
+                    const ingredientId = doc.id;
+                    const id = ids[i] === "" ? undefined : ids[i];
+                    const name = names[i];
+                    const quantity = quantities[i];
+                    const unit = units[i];
 
-        if (name.length === 0 || quantity === 0 || isNaN(quantity)) continue;
-        else ingredients.push({ id, name, quantity, unit });
+                    if (name.length === 0 || quantity === 0 || isNaN(quantity));
+                    else ingredients.push({ id, ingredientId, name, quantity, unit });
+                });
+            });
     }
 
     return ingredients;

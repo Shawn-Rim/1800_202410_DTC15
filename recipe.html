@@ -86,15 +86,18 @@
                     height="300px"
                 />
                 <div
-                    class="container mx-auto d-flex flex-row justify-content-between align-items-center px-4 text-center"
+                    class="container mx-auto d-flex flex-row justify-content-between align-items-start py-2 text-center"
                 >
-                    <div
-                        id="difficultyPlaceholder"
-                        class="d-flex flex-row justify-center gap-1 align-items-center"
-                    ></div>
-                    <h3 id="rating">5.0</h3>
+                    <div class="d-flex flex-column justify-content-between align-items-start gap-2">
+                        <div>Difficulty</div>
+                        <div id="difficultyPlaceholder" class="d-flex flex-row"></div>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center gap-1">
+                        <div>Ratings</div>
+                        <div class="fs-1" id="rating">5.0</div>
+                    </div>
                 </div>
-                <div class="container mx-auto d-flex flex-row justify-content-between px-4">
+                <div class="container mx-auto d-flex flex-row justify-content-between">
                     <div>
                         <div class="fw-lighter">Created by: <span id="author"></span></div>
                         <div class="fw-lighter">Created at: <span id="createdAt"></span></div>

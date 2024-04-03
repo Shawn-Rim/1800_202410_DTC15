@@ -232,7 +232,7 @@ function addIngredient(initial) {
     if (initial) {
         instantiation.querySelector("input[name='ingredient-name']").value = initial.name;
         instantiation.querySelector("input[name='ingredient-quantity']").value = initial.quantity;
-        instantiation.querySelector("input[name='ingredient-unit']").value = initial.unit;
+        instantiation.querySelector("select[name='ingredient-unit']").value = initial.unit;
         instantiation.querySelector("input[name='ingredient-id']").value = initial.id;
     }
 

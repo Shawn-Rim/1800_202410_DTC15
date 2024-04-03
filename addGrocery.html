@@ -58,27 +58,27 @@
             class="container mx-auto mb-4 d-flex flex-column justify-content-center align-items-center gap-4"
         >
             <div
-                class="d-flex flex-row justify-content-center align-items-center sticky-top pt-4 justify-self-end align-self-end"
-            >
-                <a
-                    class="btn btn-outline-success px-3 py-0 border-2 rounded-pill text-center"
-                    onclick="saveGroceryItems()"
-                >
-                    Save
-                </a>
-            </div>
-            <div
                 id="formPlaceholder"
                 class="container mx-auto d-flex flex-column justify-content-center align-items-center gap-2"
             ></div>
-            <button
-                class="btn btn-outline-dark px-4 py-2 text-center d-flex justify-content-center align-items-end w-50 gap-2 rounded-pill"
-                id="addbtn"
-                onclick="addGroceryItemForm()"
-            >
-                <span class="material-symbols-outlined"> add_box </span>
-                <span>Add grocery</span>
-            </button>
+
+            <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                <button
+                    class="btn btn-outline-dark px-4 py-2 text-center d-flex justify-content-center align-items-end rounded-pill"
+                    id="addbtn"
+                    onclick="addGroceryItemForm()"
+                >
+                    <span class="material-symbols-outlined"> add_box </span>
+                    <span>Add grocery</span>
+                </button>
+
+                <button
+                    class="btn btn-outline-success px-4 py-2 text-center d-flex justify-content-center align-items-end rounded-pill"
+                    onclick="saveGroceryItems()"
+                >
+                    Save
+                </button>
+            </div>
         </main>
 
         <template id="formTemplate">
@@ -110,7 +110,7 @@
                             </div>
                         </div>
                         <div class="dropdown col-12 col-md-6">
-                            <label class="form-label">Name</label>
+                            <label class="form-label">Item Name</label>
                             <input
                                 type="text"
                                 class="form-control dropdown-input"

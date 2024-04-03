@@ -13,7 +13,7 @@ function sortArray(arr) {
 function deleteItem(element) {
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
-            docID = element.parentNode.querySelector("#documentID").innerText;
+            docID = $(element).parent().siblings("#documentID").text();
 
             await db.collection("users").doc(user.uid).collection("groceries").doc(docID).delete();
 

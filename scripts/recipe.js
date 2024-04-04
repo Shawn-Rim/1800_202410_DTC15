@@ -1,3 +1,98 @@
+const updates = document.getElementById("updates");
+const updateButton = document.getElementById("updateButton");
+const ingredientIds = [];
+const units = [];
+const quantities = [];
+const names = [];
+
+function getData() {
+    firebase.auth().onAuthStateChanged(async (user) => {
+        if (user) {
+            let params = new URL(window.location.href);
+            let recipeID = params.searchParams.get("id");
+
+            const ingredients = await db
+                .collection("recipes")
+                .doc(recipeID)
+                .collection("ingredients")
+                .get();
+
+            ingredients.forEach((ingredient) => {
+                ingredientIds.push(ingredient.data().ingredientId);
+                units.push(ingredient.data().unit);
+                quantities.push(ingredient.data().quantity);
+                names.push(ingredient.data().name);
+            });
+
+            for (i = 0; i < names.length; i++) {
+                updates.innerHTML += `<li>${quantities[i]} ${units[i]} ${names[i]}</li>`;
+            }
+        } else {
+            console.log("No user logged in.");
+        }
+    });
+}
+
+function sortByExpiration(datas) {
+    for (let i = 0; i < datas.length; i++) {
+        for (let j = 0; j < datas.length - i - 1; j++) {
+            if (datas[i].data().expiration < datas[j + 1].data().expiration) {
+                const lesser = datas[j + 1];
+                datas[j + 1] = datas[j];
+                datas[j] = lesser;
+            }
+        }
+    }
+}
+
+function updateUserGrocery() {
+    firebase.auth().onAuthStateChanged(async (user) => {
+        if (user) {
+            for (i = 0; i < ingredientIds.length; i++) {
+                const id = ingredientIds[i];
+
+                const groceries = await db
+                    .collection("users")
+                    .doc(user.uid)
+                    .collection("groceries")
+                    .where("id", "==", id)
+                    .get();
+
+                let totalAmount = quantities[i];
+                groceries.forEach(async (grocery) => {
+                    console.log(grocery.data());
+                    if (grocery.data().quantity <= totalAmount) {
+                        totalAmount -= grocery.data().quantity;
+                        await db
+                            .collection("users")
+                            .doc(user.uid)
+                            .collection("groceries")
+                            .doc(grocery.id)
+                            .delete();
+                    } else if (totalAmount > 0) {
+                        await db
+                            .collection("users")
+                            .doc(user.uid)
+                            .collection("groceries")
+                            .doc(grocery.id)
+                            .update({
+                                quantity: grocery.data().quantity - totalAmount,
+                            });
+                        totalAmount -= grocery.data().quantity;
+                    }
+                });
+
+                updateButton.classList.remove("btn-outline-success");
+                updateButton.classList.add("btn-success");
+                updateButton.innerText = "Updated!";
+                updateButton.disabled = true;
+            }
+        } else {
+            console.log("No user logged in.");
+        }
+    });
+}
+
 function displayRecipeInfo() {
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
@@ -77,3 +172,4 @@ function displayRecipeInfo() {
 }
 
 displayRecipeInfo();
+getData();

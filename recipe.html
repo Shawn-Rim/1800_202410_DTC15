@@ -119,6 +119,16 @@
                     <h3>Instructions</h3>
                     <ol id="instructions"></ol>
                 </div>
+                <div class="container mx-auto gap-2 d-flex justify-content-center">
+                    <button
+                        class="btn btn-outline-success rounded-pill"
+                        id="updateButton"
+                        data-bs-toggle="modal"
+                        data-bs-target="#dialog"
+                    >
+                        Update My Grocery
+                    </button>
+                </div>
                 <div class="container mx-auto gap-2">
                     <div class="row">
                         <h3 class="col">Reviews</h3>
@@ -133,6 +143,46 @@
                 </div>
             </div>
         </main>
+
+        <div id="dialog" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Update My Grocery?</h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-danger">
+                            <b>(Depleted items will be deleted automatically)</b>
+                        </p>
+                        <p>The following items will be updated:</p>
+                        <ul id="updates"></ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-outline-success"
+                            onclick="updateUserGrocery()"
+                            data-bs-dismiss="modal"
+                        >
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- <footer class="component" id="footer"></footer> -->
         <footer

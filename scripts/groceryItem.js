@@ -21,14 +21,7 @@ function saveInfo() {
         if (user) {
             let params = new URL(window.location.href);
             let itemID = params.searchParams.get("id");
-            let grocery = await db
-                .collection("users")
-                .doc(user.uid)
-                .collection("groceries")
-                .doc(itemID)
-                .get();
 
-            let createdAt = grocery.data().createdAt;
             let expirationString = itemExpiryDate.value;
             let expirationDate =
                 expirationString === ""
@@ -40,11 +33,9 @@ function saveInfo() {
                 .doc(user.uid)
                 .collection("groceries")
                 .doc(itemID)
-                .set({
+                .update({
                     cost: itemCost.value * 100,
-                    createdAt: createdAt,
                     expiration: expirationDate,
-                    name: itemName.innerText,
                     quantity: itemQuantity.value,
                     unit: itemUnit.value,
                 });
@@ -65,7 +56,7 @@ function deleteItem() {
 
             await db.collection("users").doc(user.uid).collection("groceries").doc(itemID).delete();
 
-            window.location.href = "/main.html";
+            window.location.href = "/groceryList.html";
         } else {
             console.log("No user logged in.");
         }

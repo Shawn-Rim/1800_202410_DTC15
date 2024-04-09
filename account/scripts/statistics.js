@@ -34,6 +34,44 @@ function createPlot(output, data, selection, yFormat = "") {
             tickformat: "%Y-%m-%d",
             ticklabelmode: "period",
             rangeslider: {},
+            rangeselector: {
+                yanchor: "auto",
+                buttons: [
+                    {
+                        step: "day",
+                        stepmode: "backward",
+                        count: 7,
+                        label: "1w",
+                    },
+                    {
+                        step: "month",
+                        stepmode: "backward",
+                        count: 1,
+                        label: "1m",
+                    },
+                    {
+                        step: "month",
+                        stepmode: "backward",
+                        count: 3,
+                        label: "3m",
+                    },
+                    {
+                        step: "month",
+                        stepmode: "backward",
+                        count: 6,
+                        label: "6m",
+                    },
+                    {
+                        step: "year",
+                        stepmode: "backward",
+                        count: 1,
+                        label: "1y",
+                    },
+                    {
+                        step: "all",
+                    },
+                ],
+            },
         },
         yaxis: {
             title: "Quantity",
@@ -47,7 +85,6 @@ function createPlot(output, data, selection, yFormat = "") {
         },
         margin: {
             r: 50,
-            t: 60,
             b: 50,
         },
     });

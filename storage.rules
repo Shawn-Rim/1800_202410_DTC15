@@ -1,0 +1,25 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+  
+  	match /recipes/{recipeId} {
+    	// Allow any user to get recipe image
+      // TODO: restrict to sharing permissions
+    	allow get: if request.auth != null;
+      
+      // Always deny listing all images
+      allow list: if false;
+      
+      // TODO: restrict writes to owner of recipe
+      
+      // Allow uploads of PNGs or JPEGs that are less than 5MB by authenticated users
+      allow create, update: if request.auth != null
+      						 && request.resource.size < 5 * 1024 * 1024
+      						 && request.resource.contentType.matches("image/(png|jpeg)");
+			
+      // Allow deletes of images by authenticated users
+			allow delete: if request.auth != null;
+    }
+  }
+}

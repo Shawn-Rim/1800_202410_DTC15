@@ -3,6 +3,7 @@
     "format": "prettier --write **/*"
   },
   "devDependencies": {
+    "firebase-tools": "^13.7.1",
     "prettier": "^3.2.5"
   }
 }

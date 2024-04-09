@@ -147,18 +147,6 @@ footer#footer {
     background-color: lightgray;
 }
 
-.icon {
-    text-decoration: none;
-    color: black;
-    border-radius: 25px;
-    width: 48px;
-    height: 48px;
-}
-
-.icon:hover {
-    background-color: lightgray;
-}
-
 @media (min-width: 992px) {
     #navbarNavAltMarkup {
         box-shadow: none !important;

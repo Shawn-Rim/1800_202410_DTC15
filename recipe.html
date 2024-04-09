@@ -38,7 +38,7 @@
         <!-- Other libraries go here -->
         <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0"
         />
 
         <!-- Link to styles of your own -->
@@ -65,7 +65,11 @@
                     >
                         <span class="material-symbols-outlined md-24"> edit </span>
                     </button>
-                    <button class="btn btn-light">
+                    <button
+                        id="favorite"
+                        class="btn btn-light"
+                        onclick="markRecipeAsFavorite(this)"
+                    >
                         <span class="material-symbols-outlined md-24"> favorite </span>
                     </button>
                     <button

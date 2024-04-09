@@ -5,12 +5,12 @@ const units = [];
 const quantities = [];
 const names = [];
 
+const params = new URL(window.location.href);
+const recipeID = params.searchParams.get("id");
+
 function getData() {
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
-            let params = new URL(window.location.href);
-            let recipeID = params.searchParams.get("id");
-
             const ingredients = await db
                 .collection("recipes")
                 .doc(recipeID)
@@ -93,13 +93,26 @@ function updateUserGrocery() {
     });
 }
 
+async function markRecipeAsFavorite(button) {
+    const userRef = db.collection("users").doc(firebase.auth().currentUser.uid);
+    const recipeRef = db.collection("recipes").doc(recipeID);
+
+    const icon = button.querySelector("span");
+    const favorited = icon.classList.contains("icon-filled");
+    icon.classList.toggle("icon-filled");
+
+    await userRef.update({
+        favouriteRecipes: favorited
+            ? firebase.firestore.FieldValue.arrayRemove(recipeRef)
+            : firebase.firestore.FieldValue.arrayUnion(recipeRef),
+    });
+}
+
 function displayRecipeInfo() {
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
-            let params = new URL(window.location.href);
-            let recipeID = params.searchParams.get("id");
-
-            let recipe = await db.collection("recipes").doc(recipeID).get();
+            const recipeRef = db.collection("recipes").doc(recipeID);
+            let recipe = await recipeRef.get();
             let ingredients = await db
                 .collection("recipes")
                 .doc(recipeID)
@@ -111,6 +124,12 @@ function displayRecipeInfo() {
                 .collection("reviews")
                 .get();
             let author = await db.collection("users").doc(recipe.data().owner.id).get();
+
+            const userDoc = await db.collection("users").doc(user.uid).get();
+            const isFavorited = userDoc
+                .data()
+                .favouriteRecipes.map((ref) => ref.path)
+                .includes(recipeRef.path);
 
             document.getElementById("author").innerText = author.exists
                 ? author.data().displayName
@@ -127,6 +146,11 @@ function displayRecipeInfo() {
             document.getElementById("estimatedCost").innerText = cost;
             document.getElementById("description").innerText = recipe.data().description;
             document.getElementById("recipeImage").src = recipe.data().image;
+
+            document
+                .getElementById("favorite")
+                .querySelector("span")
+                .classList.toggle("icon-filled", isFavorited);
 
             document.getElementById("difficultyPlaceholder").innerText = "★".repeat(
                 recipe.data().difficulty,
@@ -155,7 +179,7 @@ function displayRecipeInfo() {
                 const displayName = user.exists ? user.data().displayName : "unknown";
 
                 reviewsContainer.innerHTML += `<li class="row"><p class="col"><b>${displayName}</b>${
-                    review.comment.length > 0 ? " - " + review.comment : ""
+                    review.comment && review.comment.length > 0 ? " - " + review.comment : ""
                 }</p><div class="col">${stars}</div></li>`;
             });
             document.getElementById("rating").innerText =

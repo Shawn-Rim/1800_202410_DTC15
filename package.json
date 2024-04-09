@@ -1,9 +1,14 @@
 {
-  "scripts": {
-    "format": "prettier --write **/*"
-  },
-  "devDependencies": {
-    "firebase-tools": "^13.7.1",
-    "prettier": "^3.2.5"
-  }
+    "scripts": {
+        "format": "prettier --write **/*",
+        "deploy": "firebase deploy",
+        "deploy:hosting": "firebase deploy --only hosting",
+        "deploy:database": "firebase deploy --only firestore",
+        "deploy:storage": "firebase deploy --only storage",
+        "deploy:functions": "firebase deploy --only functions"
+    },
+    "devDependencies": {
+        "firebase-tools": "^13.7.1",
+        "prettier": "^3.2.5"
+    }
 }

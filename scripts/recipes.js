@@ -100,15 +100,13 @@ firebase.auth().onAuthStateChanged(async (user) => {
     if (!user) return;
 
     loading.removeClass("hidden");
-    const [usersRef, recipesRef] = await Promise.all([
+    const [usersRef, recipes] = await Promise.all([
         db.collection("users").doc(user.uid).get(),
-        db.collection("recipes").get(),
+        fetchRecipes(user.uid),
     ]);
     loading.addClass("hidden");
 
     for (const recipeRef of usersRef.data().favouriteRecipes) favoritedRecipes.add(recipeRef.id);
-
-    const recipes = recipesRef.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 
     const mostExpensive = recipes.reduce((max, recipe) => Math.max(max, recipe.estimatedCost), 0);
     filterCostEnd.text(moneyFormat.to(mostExpensive));
@@ -120,6 +118,35 @@ firebase.auth().onAuthStateChanged(async (user) => {
     recipeIndex.setCollection(recipes);
     displayRecipes();
 });
+
+/**
+ * Fetch all the recipes the given user has access to
+ *
+ * @param {string} ownerId the id of the user to fetch recipes for
+ * @returns {Array} the recipes the user has access to
+ */
+async function fetchRecipes(ownerId) {
+    const recipesRef = db.collection("recipes");
+    const ownerRef = db.collection("users").doc(ownerId);
+
+    const results = await Promise.all([
+        recipesRef.where("owner", "==", ownerRef).get(),
+        recipesRef.where("sharedWith", "array-contains", ownerRef).get(),
+        recipesRef.where("public", "==", true).get(),
+    ]);
+    const documents = results.flatMap((result) => result.docs);
+
+    const recipes = [];
+    const deduplicated = new Set();
+    for (const doc of documents) {
+        if (deduplicated.has(doc.id)) continue;
+
+        deduplicated.add(doc.id);
+        recipes.push({ id: doc.id, ...doc.data() });
+    }
+
+    return recipes;
+}
 
 /**
  * Display the recipes, taking into account filters and sorting

@@ -128,11 +128,9 @@ function displayRecipeInfo() {
             document.getElementById("description").innerText = recipe.data().description;
             document.getElementById("recipeImage").src = recipe.data().image;
 
-            for (i = 0; i < recipe.data().difficulty; i++) {
-                document.getElementById(
-                    "difficultyPlaceholder",
-                ).innerHTML += `<span class="material-symbols-outlined">star_rate</span>`;
-            }
+            document.getElementById("difficultyPlaceholder").innerText = "★".repeat(
+                recipe.data().difficulty,
+            );
 
             ingredients.forEach((doc) => {
                 document.getElementById("ingredients").innerHTML += `<li>${doc.data().quantity} ${

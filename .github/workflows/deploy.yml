@@ -16,7 +16,7 @@ jobs:
             - uses: actions/checkout@v4
 
             - name: Inject Firebase configuration
-              run: echo "${{ secrets.FIREBASE_CONFIGURATION }}" > scripts/FirebaseAPI_DTC15.js
+              run: echo "${{ secrets.FIREBASE_CONFIGURATION }}" | base64 -d > scripts/FirebaseAPI_DTC15.js
 
             - uses: FirebaseExtended/action-hosting-deploy@v0
               with:

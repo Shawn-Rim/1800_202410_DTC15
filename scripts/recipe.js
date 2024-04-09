@@ -1,5 +1,6 @@
 const updates = document.getElementById("updates");
 const updateButton = document.getElementById("updateButton");
+const deleteButton = document.getElementById("deleteButton");
 const ingredientIds = [];
 const units = [];
 const quantities = [];
@@ -127,6 +128,8 @@ function displayRecipeInfo() {
                 .favouriteRecipes.map((ref) => ref.path)
                 .includes(recipeRef.path);
 
+            if (recipe.data().owner.id === user.uid) deleteButton.style.display = "block";
+
             document.getElementById("author").innerText = author.exists
                 ? author.data().displayName
                 : "unknown";
@@ -187,6 +190,18 @@ function displayRecipeInfo() {
             console.log("No user logged in.");
         }
     });
+}
+
+async function deleteRecipe() {
+    const user = firebase.auth().currentUser;
+    const recipeRef = db.collection("recipes").doc(recipeID);
+    const recipe = await recipeRef.get();
+
+    if (user && recipe.data().owner.id !== user.uid) return;
+    if (!confirm("Are you sure you want to delete this recipe?")) return;
+
+    await recipeRef.delete();
+    window.location.href = "/recipes.html";
 }
 
 displayRecipeInfo();

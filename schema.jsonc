@@ -82,25 +82,52 @@
                             "description": "An individual day's statistics",
 
                             "properties": {
-                                "expiredGroceries": {
-                                    "type": "integer",
-                                    "description": "The number of groceries that are currently expired",
+                                "expired": {
+                                    "type": "object",
+                                    "description": "The user's expired groceries for the day",
+
+                                    "properties": {
+                                        "cost": {
+                                            "type": "integer",
+                                            "description": "The total cost of the expired groceries in cents",
+                                        },
+                                        "quantity": {
+                                            "type": "integer",
+                                            "description": "The total quantity of the expired groceries",
+                                        },
+                                    },
                                 },
-                                "expiredGroceriesCost": {
-                                    "type": "integer",
-                                    "description": "The total cost of expired groceries in cents",
+
+                                "expiringSoon": {
+                                    "type": "object",
+                                    "description": "The user's groceries that are expring soon for the day",
+
+                                    "properties": {
+                                        "cost": {
+                                            "type": "integer",
+                                            "description": "The total cost of the groceries expiring soon in cents",
+                                        },
+                                        "quantity": {
+                                            "type": "integer",
+                                            "description": "The total quantity of the groceries expiring soon",
+                                        },
+                                    },
                                 },
-                                "groceriesExpiringSoon": {
-                                    "type": "integer",
-                                    "description": "The number of groceries that are expiring within the next 7 days",
-                                },
-                                "totalCost": {
-                                    "type": "integer",
-                                    "description": "The total cost of all groceries in cents",
-                                },
-                                "totalGroceries": {
-                                    "type": "integer",
-                                    "description": "The total number of groceries owned",
+
+                                "fresh": {
+                                    "type": "object",
+                                    "description": "The user's fresh groceries for the day",
+
+                                    "properties": {
+                                        "cost": {
+                                            "type": "integer",
+                                            "description": "The total cost of the fresh groceries in cents",
+                                        },
+                                        "quantity": {
+                                            "type": "integer",
+                                            "description": "The total quantity of the fresh groceries",
+                                        },
+                                    },
                                 },
                             },
                         },

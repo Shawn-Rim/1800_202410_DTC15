@@ -13,6 +13,9 @@ const filterCost = document.getElementById("filter-cost");
 const filterCostStart = $("#filter-cost-start");
 const filterCostEnd = $("#filter-cost-end");
 const filterFavoritedOnly = $("#filter-favorited-only");
+const filterPublic = $("#filter-public");
+const filterShared = $("#filter-shared");
+const filterOwner = $("#filter-owner");
 
 const moneyFormat = wNumb({
     decimals: 2,
@@ -95,6 +98,10 @@ filterFavoritedOnly.on("change", () => {
     window.history.pushState({}, "", url.toString());
     displayRecipes();
 });
+
+filterPublic.on("change", displayRecipes);
+filterShared.on("change", displayRecipes);
+filterOwner.on("change", displayRecipes);
 
 firebase.auth().onAuthStateChanged(async (user) => {
     if (!user) return;
@@ -197,15 +204,27 @@ function sortRecipes(recipes) {
  * @returns the filtered recipes
  */
 function applyFilters(recipes) {
+    const userRef = db.collection("users").doc(firebase.auth().currentUser.uid);
+
     const [difficultyStart, difficultyEnd] = filterDifficulty.noUiSlider.get(true);
     const [costStart, costEnd] = filterCost.noUiSlider.get(true);
     const favoritedOnly = filterFavoritedOnly.prop("checked");
+    const public = filterPublic.prop("checked");
+    const shared = filterShared.prop("checked");
+    const owner = filterOwner.prop("checked");
+
     return recipes
         .filter(
             (recipe) => recipe.difficulty >= difficultyStart && recipe.difficulty <= difficultyEnd,
         )
         .filter((recipe) => recipe.estimatedCost >= costStart && recipe.estimatedCost <= costEnd)
-        .filter((recipe) => !favoritedOnly || favoritedRecipes.has(recipe.id));
+        .filter((recipe) => !favoritedOnly || favoritedRecipes.has(recipe.id))
+        .filter((recipe) => {
+            if (public && recipe.public) return true;
+            if (shared && recipe.sharedWith.some((ref) => ref.isEqual(userRef))) return true;
+            if (owner && recipe.owner.isEqual(userRef)) return true;
+            return false;
+        });
 }
 
 /**

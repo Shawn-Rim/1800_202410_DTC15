@@ -112,20 +112,16 @@ function displayRecipeInfo() {
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
             const recipeRef = db.collection("recipes").doc(recipeID);
-            let recipe = await recipeRef.get();
-            let ingredients = await db
-                .collection("recipes")
-                .doc(recipeID)
-                .collection("ingredients")
-                .get();
-            const reviews = await db
-                .collection("recipes")
-                .doc(recipeID)
-                .collection("reviews")
-                .get();
+
+            const [recipe, ingredients, reviews, userDoc] = await Promise.all([
+                await recipeRef.get(),
+                recipeRef.collection("ingredients").get(),
+                recipeRef.collection("reviews").get(),
+                db.collection("users").doc(user.uid).get(),
+            ]);
+
             let author = await db.collection("users").doc(recipe.data().owner.id).get();
 
-            const userDoc = await db.collection("users").doc(user.uid).get();
             const isFavorited = userDoc
                 .data()
                 .favouriteRecipes.map((ref) => ref.path)

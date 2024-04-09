@@ -69,6 +69,42 @@
                             },
                         },
                     },
+
+                    // The statistics sub-collection (/users/<user-id>/statistics)
+                    // The document ID must be the date for which the statistics are recorded in the format YYYY-MM-DD
+                    // Contains information about the user's statistics for a given day
+                    "statistics": {
+                        "type": "array",
+                        "description": "The statistics sub-collection",
+
+                        "items": {
+                            "type": "object",
+                            "description": "An individual day's statistics",
+
+                            "properties": {
+                                "expiredGroceries": {
+                                    "type": "integer",
+                                    "description": "The number of groceries that are currently expired",
+                                },
+                                "expiredGroceriesCost": {
+                                    "type": "integer",
+                                    "description": "The total cost of expired groceries in cents",
+                                },
+                                "groceriesExpiringSoon": {
+                                    "type": "integer",
+                                    "description": "The number of groceries that are expiring within the next 7 days",
+                                },
+                                "totalCost": {
+                                    "type": "integer",
+                                    "description": "The total cost of all groceries in cents",
+                                },
+                                "totalGroceries": {
+                                    "type": "integer",
+                                    "description": "The total number of groceries owned",
+                                },
+                            },
+                        },
+                    },
                 },
             },
         },

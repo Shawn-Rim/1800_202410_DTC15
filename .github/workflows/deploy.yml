@@ -14,6 +14,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+                  cache: npm
 
             - name: Inject Firebase configuration
               run: echo "${{ secrets.FIREBASE_CONFIGURATION }}" | base64 -d > scripts/FirebaseAPI_DTC15.js
@@ -24,3 +28,41 @@ jobs:
                   firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMP1800_202410_DTC_15 }}"
                   channelId: live
                   projectId: comp1800-202410-dtc-15
+
+    firestore:
+        name: Firestore
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+                  cache: npm
+            - uses: google-github-actions/auth@v2
+              id: gcloud
+              with:
+                  credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMP1800_202410_DTC_15 }}
+                  create_credentials_file: true
+                  export_environment_variables: true
+
+            - run: npm ci
+            - run: npx firebase deploy --only firestore
+
+    storage:
+        name: Storage
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+                  cache: npm
+            - uses: google-github-actions/auth@v2
+              id: gcloud
+              with:
+                  credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMP1800_202410_DTC_15 }}
+                  create_credentials_file: true
+                  export_environment_variables: true
+
+            - run: npm ci
+            - run: npx firebase deploy --only storage

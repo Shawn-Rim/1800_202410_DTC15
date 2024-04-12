@@ -20,32 +20,35 @@ List technologies (with version numbers), API's, icons, fonts, images, media or 
 -   HTML, CSS, JavaScript
 -   Bootstrap 5.0 (Frontend library)
 -   Firebase 8.0 (BAAS - Backend as a Service)
--   ...
+-   Google Fonts
+-   Google Material Icons
+-   Luxon v3.4.4
+-   NoUISlider v15.7.1
+-   Fuse.js v7.0.0
+-   wNumb v1.2.0
 
 ## 4. Complete setup/installion/usage
 
 State what a user needs to do when they come to your project. How do others start using your code or application?
 Here are the steps ...
 
--   ...
--   ...
--   ...
+-   Install development packages with `npm install`
+-   Copy the Firebase configuration object from your Firebase project settings into `scripts/FirebaseAPI_DTC15.js`
+-   Run the development server with `npm start`
 
 ## 5. Known Bugs and Limitations
 
-Here are some known bugs:
-
--   ...
--   ...
--   ...
+None that we know of. If you find any, please let us know.
 
 ## 6. Features for Future
 
 What we'd like to build in the future:
 
--   ...
--   ...
--   ...
+-   Source ingredients from an API instead of hardcoding them in the database
+-   Use AI to suggest recipes based on user groceries
+-   Implement automatic tracking of grocery statistics
+    -   Just needs to enable Firebase functions which requires a credit card
+-   Allow users to create a list of groceries they need to buy
 
 ## 7. Contents of Folder
 

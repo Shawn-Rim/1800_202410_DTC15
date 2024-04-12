@@ -50,7 +50,6 @@
         <nav id="navbar"></nav>
 
         <!-- Page content -->
-        <!-- <main>...<main> -->
         <main
             class="container mx-auto d-flex flex-column justify-content-center align-items-center gap-4 my-4"
         >
@@ -150,13 +149,13 @@
             <div class="m-2 d-flex justify-content-between w-100">
                 <a class="btn btn-outline-dark" href="/recipes.html">Back</a>
                 <button
-                        id="deleteButton"
-                        class="btn btn-outline-danger"
-                        style="display: none"
-                        onclick="deleteRecipe()"
-                    >
-                        Delete
-                    </button>
+                    id="deleteButton"
+                    class="btn btn-outline-danger"
+                    style="display: none"
+                    onclick="deleteRecipe()"
+                >
+                    Delete
+                </button>
             </div>
         </main>
 
@@ -200,11 +199,12 @@
             </div>
         </div>
 
-        <!-- <footer class="component" id="footer"></footer> -->
+        <!-- Page footer -->
         <footer
             class="component fixed-bottom sticky-lg-top bg-secondary-subtle"
             id="stickyFooter"
         ></footer>
+
         <!-- Template scripts -->
         <script src="scripts/FirebaseAPI_DTC15.js"></script>
         <script src="scripts/components.js"></script>

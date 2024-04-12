@@ -25,6 +25,8 @@
             "storage.rules",
             "*.log"
         ],
+        "trailingSlash": false,
+        "cleanUrls": true,
         "rewrites": [
             {
                 "source": "/groceries/new",

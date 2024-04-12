@@ -5,7 +5,7 @@ ui.start("#firebase-auth", {
         signInSuccessWithAuthResult,
         uiShown: () => $("#loader").hide(),
     },
-    signInSuccessUrl: "main.html",
+    signInSuccessUrl: "dashboard.html",
     signInFlow: "popup",
     signInOptions: [
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
@@ -35,7 +35,7 @@ function signInSuccessWithAuthResult(result) {
         })
         .then(() => {
             console.log("User created successfully");
-            window.location.href = "/main.html";
+            window.location.href = "/dashboard.html";
         })
         .catch((err) => console.error(`Failed to create user: ${err}\n${err.stack}`));
 

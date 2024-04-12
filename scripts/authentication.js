@@ -23,7 +23,7 @@ firebase.auth().onAuthStateChanged((user) => {
 function pageForState(state) {
     switch (state) {
         case "authenticated":
-            return "/main.html";
+            return "/dashboard.html";
         case "unauthenticated":
             return "/login.html";
         default:

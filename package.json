@@ -5,7 +5,6 @@
         "deploy:hosting": "firebase deploy --only hosting",
         "deploy:database": "firebase deploy --only firestore",
         "deploy:storage": "firebase deploy --only storage",
-        "deploy:functions": "firebase deploy --only functions",
         "start": "firebase emulators:start --only hosting"
     },
     "devDependencies": {

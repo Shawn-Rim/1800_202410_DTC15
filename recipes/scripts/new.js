@@ -69,7 +69,7 @@ async function onSubmit(event) {
 
         await recipeRef.update({ image: await task.snapshot.ref.getDownloadURL() });
 
-        window.location.href = "/recipes.html";
+        window.location.href = "/recipes";
     } catch (e) {
         console.error(e);
         await recipeRef.delete();

@@ -173,7 +173,7 @@ function displayRecipes() {
         instantiation.getElementById("name").innerText = recipe.name;
         instantiation.getElementById("description").innerText = recipe.description;
         instantiation.getElementById("image").src = recipe.image;
-        instantiation.getElementById("link").href = `/recipe.html?id=${recipe.id}`;
+        instantiation.getElementById("link").href = `/recipes/${recipe.id}`;
         instantiation.getElementById("difficulty").innerText = "★".repeat(recipe.difficulty);
         instantiation.getElementById("cost").innerText = moneyFormat.to(recipe.estimatedCost);
 

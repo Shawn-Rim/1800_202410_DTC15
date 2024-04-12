@@ -1,5 +1,7 @@
-const params = new URLSearchParams(window.location.search);
-const recipeId = params.get("id");
+const pathSegments = window.location.pathname.split("/");
+const recipeId = pathSegments[pathSegments.length - 2];
+
+$("#back-button").attr("href", `/recipes/${recipeId}`);
 
 const users = $("#users");
 const userInputTemplate = document.getElementById("user-input-template");
@@ -9,7 +11,7 @@ const pageLoading = $("#page-loading");
 
 const recipeRef = db.collection("recipes").doc(recipeId);
 const recipeDoc = await recipeRef.get();
-if (!recipeDoc.exists) window.location.href = "/recipes.html";
+if (!recipeDoc.exists) window.location.href = "/recipes";
 
 const recipe = recipeDoc.data();
 pageLoading.hide();
@@ -35,7 +37,7 @@ async function onSubmit(event) {
     try {
         const sharedWith = await findUsers(emails);
         await recipeRef.set({ sharedWith }, { merge: true });
-        window.location.href = `/recipe.html?id=${recipeId}`;
+        window.location.href = `/recipes/${recipeId}`;
     } catch (e) {
         console.error(e);
 

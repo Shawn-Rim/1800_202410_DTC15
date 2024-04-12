@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <title>WasteNot</title>
@@ -42,7 +42,7 @@
         />
 
         <!-- Link to styles of your own -->
-        <link rel="stylesheet" href="styles/style.css" />
+        <link rel="stylesheet" href="/styles/style.css" />
     </head>
 
     <body>
@@ -53,33 +53,33 @@
         <main class="container mx-auto">
             <div class="card mt-4">
                 <div class="card-header">
-                    <h4>Add your review</h4>
+                    <h4>Share recipe</h4>
                 </div>
                 <div class="card-body">
-                    <form id="review-form" class="row g-3">
-                        <div class="col-12 col-md-6">
-                            <label class="form-label">Rating</label>
-                            <div>
-                                <button type="button" class="btn star material-symbols-outlined">
-                                    star
-                                </button>
-                                <button type="button" class="btn star material-symbols-outlined">
-                                    star
-                                </button>
-                                <button type="button" class="btn star material-symbols-outlined">
-                                    star
-                                </button>
-                                <button type="button" class="btn star material-symbols-outlined">
-                                    star
-                                </button>
-                                <button type="button" class="btn star material-symbols-outlined">
-                                    star
-                                </button>
-                            </div>
+                    <div id="page-loading" style="display: flex" class="justify-content-center">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
                         </div>
-                        <div class="col-12 col-md-9">
-                            <label for="comment" class="form-label">Comments</label>
-                            <textarea class="form-control" id="comment" name="comment"></textarea>
+                    </div>
+                    <form id="share-form" class="row g-3">
+                        <div class="col-12 col-lg-6">
+                            <p>
+                                Share a recipe directly with another user by entering their email.
+                                Once shared, they will be able to view the recipe and add it to
+                                their own collection.
+                            </p>
+                            <p>To remove a user, click the delete button next to their email.</p>
+                        </div>
+                        <div class="col-12 col-lg-9">
+                            <label class="form-label">Shared with:</label>
+                            <div class="row row-cols-1 gy-1" id="users"></div>
+                            <div class="mt-2 row justify-content-end text-end">
+                                <div class="col-2">
+                                    <button type="button" id="add-user" class="btn btn-light">
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
                         </div>
 
                         <button type="submit" id="submit" class="btn btn-primary">Save</button>
@@ -88,17 +88,27 @@
             </div>
 
             <div class="m-2 d-flex justify-content-between">
-                <button type="button" class="btn btn-outline-dark" onclick="window.location = '/recipe.html' + window.location.search">Back</a>
+                <a id="back-button" class="btn btn-outline-dark">Back</a>
             </div>
         </main>
 
+        <template id="user-input-template">
+            <div class="col input-group">
+                <input type="email" placeholder="john@snow.ca" class="form-control" name="email" />
+                <button type="button" class="btn btn-outline-danger">
+                    <span class="material-symbols-outlined" style="font-size: 1rem"> delete </span>
+                </button>
+            </div>
+        </template>
+
         <footer class="component" id="stickyFooter"></footer>
+
         <!-- Template scripts -->
-        <script src="scripts/FirebaseAPI_DTC15.js"></script>
-        <script src="scripts/components.js"></script>
-        <script src="scripts/authentication.js" data-require="authenticated"></script>
+        <script src="/scripts/FirebaseAPI_DTC15.js"></script>
+        <script src="/scripts/components.js"></script>
+        <script src="/scripts/authentication.js" data-require="authenticated"></script>
 
         <!-- Page scripts -->
-        <script src="./scripts/addReview.js"></script>
+        <script type="module" src="/recipes/scripts/share.js"></script>
     </body>
 </html>

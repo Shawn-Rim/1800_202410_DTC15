@@ -24,6 +24,28 @@
             "firestore.indexes.json",
             "storage.rules",
             "*.log"
+        ],
+        "rewrites": [
+            {
+                "source": "/recipes/new",
+                "destination": "/recipes/new.html"
+            },
+            {
+                "source": "/recipes/{,/*}/edit",
+                "destination": "/recipes/edit.html"
+            },
+            {
+                "source": "/recipes/{,/*}/share",
+                "destination": "/recipes/share.html"
+            },
+            {
+                "source": "/recipes/{,/*}/review",
+                "destination": "/recipes/review.html"
+            },
+            {
+                "source": "/recipes/{,/*}",
+                "destination": "/recipes/detail.html"
+            }
         ]
     },
     "storage": {

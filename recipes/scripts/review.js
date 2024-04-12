@@ -1,5 +1,7 @@
-const params = new URLSearchParams(window.location.search);
-const recipeId = params.get("id");
+const pathSegments = window.location.pathname.split("/");
+const recipeId = pathSegments[pathSegments.length - 2];
+
+$("#back-button").attr("href", `/recipes/${recipeId}`);
 
 const form = $("#review-form");
 const submit = $("#submit");
@@ -33,7 +35,7 @@ form.submit(async (e) => {
                 comment: data.get("comment"),
             });
 
-        window.location.href = "/recipe.html?id=" + recipeId;
+        window.location.href = `/recipes/${recipeId}`;
     } catch (e) {
         console.error(e);
     } finally {

@@ -42,12 +42,12 @@
         />
 
         <!-- Link to styles of your own -->
-        <link rel="stylesheet" href="styles/style.css" />
+        <link rel="stylesheet" href="/styles/style.css" />
     </head>
 
     <body>
         <!-- Page layout -->
-        <nav id="navbar" src="components/navbar/authenticated.html"></nav>
+        <nav id="navbar"></nav>
 
         <!-- Page content -->
         <main class="container mx-auto">
@@ -197,7 +197,7 @@
             </div>
 
             <div class="m-2 d-flex justify-content-between">
-                <button type="button" class="btn btn-outline-dark" onclick="window.location = '/recipe.html' + window.location.search">Back</a>
+                <a id="back-button" class="btn btn-outline-dark">Back</a>
             </div>
         </main>
 
@@ -268,12 +268,12 @@
         ></footer>
 
         <!-- Template scripts -->
-        <script src="scripts/FirebaseAPI_DTC15.js"></script>
-        <script src="scripts/components.js"></script>
-        <script src="scripts/authentication.js" data-require="authenticated"></script>
-        <script src="scripts/dropdownFilter.js"></script>
+        <script src="/scripts/FirebaseAPI_DTC15.js"></script>
+        <script src="/scripts/components.js"></script>
+        <script src="/scripts/authentication.js" data-require="authenticated"></script>
 
         <!-- Page scripts -->
-        <script type="module" src="/scripts/editRecipe.js"></script>
+        <script src="/scripts/dropdownFilter.js"></script>
+        <script type="module" src="/recipes/scripts/edit.js"></script>
     </body>
 </html>

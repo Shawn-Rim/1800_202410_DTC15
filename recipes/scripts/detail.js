@@ -6,8 +6,12 @@ const units = [];
 const quantities = [];
 const names = [];
 
-const params = new URL(window.location.href);
-const recipeID = params.searchParams.get("id");
+const pathSegments = window.location.pathname.split("/");
+const recipeID = pathSegments[pathSegments.length - 1];
+
+document.getElementById("edit-button").href = `/recipes/${recipeID}/edit`;
+document.getElementById("share-button").href = `/recipes/${recipeID}/share`;
+document.getElementById("review-button").href = `/recipes/${recipeID}/review`;
 
 function getData() {
     firebase.auth().onAuthStateChanged(async (user) => {
@@ -201,7 +205,7 @@ async function deleteRecipe() {
     if (!confirm("Are you sure you want to delete this recipe?")) return;
 
     await recipeRef.delete();
-    window.location.href = "/recipes.html";
+    window.location.href = "/recipes";
 }
 
 displayRecipeInfo();

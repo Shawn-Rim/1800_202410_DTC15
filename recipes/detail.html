@@ -42,7 +42,7 @@
         />
 
         <!-- Link to styles of your own -->
-        <link rel="stylesheet" href="styles/style.css" />
+        <link rel="stylesheet" href="/styles/style.css" />
     </head>
 
     <body>
@@ -58,12 +58,9 @@
             >
                 <h1 id="recipeName">Recipe</h1>
                 <div class="d-flex flex-row gap-2 align-items-center justify-content-center">
-                    <button
-                        class="btn btn-light"
-                        onclick="window.location = '/editRecipe.html' + window.location.search"
-                    >
+                    <a id="edit-button" class="btn btn-light">
                         <span class="material-symbols-outlined md-24"> edit </span>
-                    </button>
+                    </a>
                     <button
                         id="favorite"
                         class="btn btn-light"
@@ -71,12 +68,9 @@
                     >
                         <span class="material-symbols-outlined md-24"> favorite </span>
                     </button>
-                    <button
-                        class="btn btn-light"
-                        onclick="window.location = '/shareRecipe.html' + window.location.search"
-                    >
+                    <a id="share-button" class="btn btn-light">
                         <span class="material-symbols-outlined md-24"> ios_share </span>
-                    </button>
+                    </a>
                 </div>
             </header>
             <div
@@ -135,19 +129,14 @@
                 <div class="container mx-auto gap-2">
                     <div class="row">
                         <h3 class="col">Reviews</h3>
-                        <button
-                            class="btn btn-light col-2"
-                            onclick="window.location = '/addReview.html' + window.location.search"
-                        >
-                            Add Review
-                        </button>
+                        <a id="review-button" class="btn btn-light col-2"> Add Review </a>
                     </div>
                     <ul id="reviews"></ul>
                 </div>
             </div>
 
             <div class="m-2 d-flex justify-content-between w-100">
-                <a class="btn btn-outline-dark" href="/recipes.html">Back</a>
+                <a class="btn btn-outline-dark" href="/recipes">Back</a>
                 <button
                     id="deleteButton"
                     class="btn btn-outline-danger"
@@ -206,12 +195,11 @@
         ></footer>
 
         <!-- Template scripts -->
-        <script src="scripts/FirebaseAPI_DTC15.js"></script>
-        <script src="scripts/components.js"></script>
-        <script src="scripts/authentication.js" data-require="authenticated"></script>
-        <script src="scripts/recipe.js"></script>
+        <script src="/scripts/FirebaseAPI_DTC15.js"></script>
+        <script src="/scripts/components.js"></script>
+        <script src="/scripts/authentication.js" data-require="authenticated"></script>
 
         <!-- Page scripts -->
-        <!-- <script src="./scripts/script.js"></script> -->
+        <script src="/recipes/scripts/detail.js"></script>
     </body>
 </html>

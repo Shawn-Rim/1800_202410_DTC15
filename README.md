@@ -55,20 +55,76 @@ What we'd like to build in the future:
 Content of the project folder:
 
 ```
- Top level of project folder:
-├── .gitignore               # Git ignore file
-├── index.html               # landing HTML file, this is what users see when you come to url
-└── README.md
-
-It has the following subfolders and files:
-├── .git                     # Folder for git repo
-├── images                   # Folder for images
-    /blah.jpg                # Acknowledge source
-├── scripts                  # Folder for scripts
-    /blah.js                 #
-├── styles                   # Folder for styles
-    /blah.css                #
-
-
-
+1800_202410_DTC15
+├── .git
+├── .gitignore
+├── .prettierignore              # Code formatting configuration
+├── .prettierrc.json             # (same as above)
+├── README.md                    # Project documentation
+│
+│   # Shared resources
+├── components                   # Page fragments
+│   ├── footer.html
+│   ├── hero.html
+│   ├── navbar
+│   │   ├── authenticated.html
+│   │   └── unauthenticated.html
+│   └── stickyFooter.html
+├── images                       # Images used by the application
+│   └── logo.png
+├── scripts                      # Shared scripts used by multiple pages
+│   ├── authentication.js
+│   ├── components.js
+│   ├── dropdownFilter.js
+│   ├── FirebaseAPI_DTC15.js     # Firebase configuration object (ignored by git)
+│   ├── login.js
+│   └── utils.js
+├── styles
+│   └── style.css
+│
+│   # Pages
+├── 404.html
+├── about.html
+├── dashboard.html               # Landing page (authenticated)
+├── index.html                   # Landing page (unauthenticated)
+├── login.html
+├── template.html
+├── account                      # Account management pages
+│   ├── index.html
+│   ├── scripts
+│   │   ├── index.js
+│   │   └── statistics.js
+│   └── statistics.html
+├── groceries                    # Grocery management pages
+│   ├── detail.html
+│   ├── index.html
+│   ├── new.html
+│   └── scripts
+│       ├── detail.js
+│       ├── index.js
+│       └── new.js
+├── recipes                      # Recipe management pages
+│   ├── detail.html
+│   ├── edit.html
+│   ├── index.html
+│   ├── new.html
+│   ├── review.html
+│   ├── scripts
+│   │   ├── detail.js
+│   │   ├── edit.js
+│   │   ├── index.js
+│   │   ├── new.js
+│   │   ├── review.js
+│   │   └── share.js
+│   └── share.html
+│
+│   # Firebase
+├── .firebaserc
+├── firebase.json
+├── firestore.indexes.json
+├── firestore.rules
+├── package.json
+├── package-lock.json
+├── schema.jsonc                # Firestore schema
+└── storage.rules
 ```

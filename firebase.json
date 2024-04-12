@@ -27,6 +27,14 @@
         ],
         "rewrites": [
             {
+                "source": "/groceries/new",
+                "destination": "/groceries/new.html"
+            },
+            {
+                "source": "/groceries/{,/*}",
+                "destination": "/groceries/detail.html"
+            },
+            {
                 "source": "/recipes/new",
                 "destination": "/recipes/new.html"
             },

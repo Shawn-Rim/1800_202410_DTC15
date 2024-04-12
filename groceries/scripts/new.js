@@ -38,7 +38,7 @@ function saveGroceryItems() {
             });
 
             await Promise.all(groceries);
-            window.location.href = "/groceryList.html";
+            window.location.href = "/groceries";
         } else {
             console.log("No user logged in.");
         }

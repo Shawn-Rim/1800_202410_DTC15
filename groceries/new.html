@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <title>WasteNot</title>
@@ -42,12 +42,12 @@
         />
 
         <!-- Link to styles of your own -->
-        <link rel="stylesheet" href="styles/style.css" />
+        <link rel="stylesheet" href="/styles/style.css" />
     </head>
 
     <body>
         <!-- Page layout -->
-        <nav id="navbar" src="components/navbar/authenticated.html"></nav>
+        <nav id="navbar"></nav>
 
         <footer
             class="component fixed-bottom sticky-lg-top bg-secondary-subtle"
@@ -160,12 +160,11 @@
         </template>
 
         <!-- Template scripts -->
-        <script src="scripts/FirebaseAPI_DTC15.js"></script>
-        <script src="scripts/components.js"></script>
-        <script src="scripts/authentication.js" data-require="authenticated"></script>
-        <script src="./scripts/addGrocery.js"></script>
+        <script src="/scripts/FirebaseAPI_DTC15.js"></script>
+        <script src="/scripts/components.js"></script>
+        <script src="/scripts/authentication.js" data-require="authenticated"></script>
 
         <!-- Page scripts -->
-        <!-- <script src="./scripts/script.js"></script> -->
+        <script src="/groceries/scripts/new.js"></script>
     </body>
 </html>

@@ -1,3 +1,6 @@
+const pathSegments = window.location.pathname.split("/");
+const itemID = pathSegments[pathSegments.length - 1];
+
 const itemName = document.getElementById("itemName");
 const itemQuantity = document.getElementById("quantity");
 const itemUnit = document.getElementById("unit");
@@ -19,9 +22,6 @@ function disableEdit() {
 function saveInfo() {
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
-            let params = new URL(window.location.href);
-            let itemID = params.searchParams.get("id");
-
             let expirationString = itemExpiryDate.value;
             let expirationDate =
                 expirationString === ""
@@ -51,12 +51,9 @@ function saveInfo() {
 function deleteItem() {
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
-            let params = new URL(window.location.href);
-            let itemID = params.searchParams.get("id");
-
             await db.collection("users").doc(user.uid).collection("groceries").doc(itemID).delete();
 
-            window.location.href = "/groceryList.html";
+            window.location.href = "/groceries";
         } else {
             console.log("No user logged in.");
         }
@@ -66,9 +63,6 @@ function deleteItem() {
 function displayItems() {
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
-            let params = new URL(window.location.href);
-            let itemID = params.searchParams.get("id");
-
             let itemRef = await db
                 .collection("users")
                 .doc(user.uid)

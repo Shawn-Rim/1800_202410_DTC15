@@ -7,3 +7,4 @@ FirebaseAPI_DTC15.js
 firebase-debug.log
 
 !.vscode/settings.json
+package-lock.json

@@ -17,7 +17,6 @@ jobs:
             - uses: actions/setup-node@v4
               with:
                   node-version: "20"
-                  cache: npm
 
             - name: Inject Firebase configuration
               run: echo "${{ secrets.FIREBASE_CONFIGURATION }}" | base64 -d > scripts/FirebaseAPI_DTC15.js
